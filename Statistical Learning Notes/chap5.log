@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.4.17)  1 JUN 2021 04:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  25 NOV 2021 23:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **chap5.tex
 (./chap5.tex
-LaTeX2e <2020-10-01> patch level 4
-L3 programming layer <2021-02-18>
+LaTeX2e <2021-06-01> patch level 1
+L3 programming layer <2021-07-12>
 ! Undefined control sequence.
 l.1 \chapter
             {Multivariate Distribution}
@@ -7420,12 +7420,12 @@ l.221 			\frac
               {\partial x_1}{\partial y_1} & \cdots & \frac{\partial x_1}{\p...
 (That makes 100 errors; please try again.) 
 Here is how much of TeX's memory you used:
- 38 strings out of 478994
- 551 string characters out of 5858184
- 302653 words of memory out of 5000000
- 17620 multiletter control sequences out of 15000+600000
+ 39 strings out of 478542
+ 577 string characters out of 5850387
+ 310975 words of memory out of 5000000
+ 18074 multiletter control sequences out of 15000+600000
  403738 words of font info for 28 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 37i,13n,42p,590b,169s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 24i,13n,32p,590b,173s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 !  ==> Fatal error occurred, no output PDF file produced!
