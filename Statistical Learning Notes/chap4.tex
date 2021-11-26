@@ -1,0 +1,234 @@
+\chapter{Statistic Inference (I)}
+
+\section{Jeffrey Prior}
+Now we have $p(x|\theta)$, how we set the prior of parameter $\theta$? One method is set it depends on the model.
+
+\begin{definition}[Fisher Information]
+	\begin{align*}
+		I(\theta)&=\E\left[\left(\frac{\d \log (f(x,\theta))}{\d \theta}\right)^2\right]\\
+		&= \int \left(\frac{\d \log f(x,\theta)}{\d \theta}\right)^2f(x,\theta)\d x
+	\end{align*}
+\end{definition}
+
+\begin{lemma}
+	Under certain condition, which means the integral and differential is changeable, 
+	$$I(\theta)=-\E\left[\frac{\d^2 \log f(x,\theta)}{\d \theta^2}\right]$$
+\end{lemma}
+\begin{proof}
+	\begin{align*}
+		\frac{\d^2 \log f}{\d \theta^2} &=\frac{\d}{\d\theta}\left(\frac{\frac{\d f}{\d e}}{f}\right) \\
+		&= \frac{\frac{\d^2 f}{\d \theta^2}}{f}-\left(\frac{\frac{\d f}{\d \theta}}{f}\right)^2\\
+		&=\frac{\frac{\d^2 f}{\d \theta^2}}{f} - \left(\frac{\d \log f}{\d\theta}\right)^2
+	\end{align*}
+Take integral for both sides:
+	\begin{align*}
+		\int \frac{\d^2\log f}{\d\theta^2}f\d x &= \int \frac{\d ^2 f}{\d \theta^2}\d x-I(\theta)\\
+		&= \frac{\d^2}{\d\theta^2}\int f\d x-I(\theta)\\
+		&= \frac{\d^2}{\d \theta^2}\cdot 1 - I(\theta)\\
+		&= -I(\theta)
+	\end{align*}
+\end{proof}
+
+Now we have the Fisher Information, we define the prior of parameter as 
+$$p(\theta)\propto \sqrt{I(\theta)}$$ which is called \textbf{Jeffrey Prior}. Why we can set prior like this? Suppose we have a one-to-one map $\varphi(\theta)$ of $\theta$, then
+	\begin{align*}
+		p(\varphi)&=p(\theta)\left|\frac{\d \theta}{\d \varphi}\right|  \tag{Jaccobin}\\
+		&\propto \sqrt{I(\theta)\left(\frac{\d \theta}{\d \varphi}\right)^2}\\
+		&=\sqrt{\E\left[\left(\frac{\d \log f}{\d\theta}\right)^2\right]\left(\frac{\d\theta}{\d\varphi}\right)^2}\\
+		&=\sqrt{\E\left[\left(\frac{\d \log f}{\d\theta}\cdot\frac{\d\theta}{\d\varphi}\right)^2\right]}\\
+		&=\sqrt{\E\left[\left(\frac{\d\log f}{\d\varphi}\right)^2\right]}\\
+		&=\sqrt{I(\varphi)}
+	\end{align*}
+
+We call this \textbf{prior invariance}.
+
+
+	\paragraph{Ex 1.} Suppose $x\sim N(\mu, \sigma^2)$ with $\sigma$ fixed, compute the $I(\mu)$.
+	
+	$$\log f\propto -\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2$$
+	$$\sqrt{I(\mu)}=\sqrt{\E\left[\left(\frac{x-\mu}{\sigma}\right)^2\right]}=\sqrt{\frac{\E(x-\mu)^2}{\sigma^4}}=\sqrt{\frac{1}{\sigma^2}}\propto 1$$
+	
+	This prior propers to a constant and the integral of that does not equal to 1. Therefore, we define it as \textbf{improper prior}.
+	
+	\paragraph{Ex 2.} Suppose $x\sim N(\mu, \sigma^2)$ with $\mu$ fixed, compute the $I(\sigma)$.
+	
+	Let $\tau = \frac{1}{\sigma^2}$
+	$$f(\tau) = \frac{\tau^{1/2}}{\sqrt{2\pi}}\exp\left(-\frac{\tau(x-\mu)^2}{2}\right)$$
+	Compute $\log f$
+	$$\log f = \frac{1}{2}\ln \tau - \frac{\tau}{2}(x-\mu)^2$$
+	Derivative of $\tau$
+	$$\frac{\d \log f}{\d \tau} = \frac{1}{2\tau} - \frac{1}{2}(x-\mu)^2$$
+	Compute expect of the derivative:
+	$$\E\left[\frac{1}{4}\left(\frac{1}{\tau}-(x-\mu)^2\right)^2\right]=\E\left[\frac{1}{4\tau^2}-\frac{(x-\mu)^2}{2\tau}+\frac{(x-\mu)^4}{4}\right] = \frac{1}{4\tau^2} - \frac{1}{2\tau^2}+\E\left[\frac{(x-\mu)^4}{4}\right]$$
+	where
+	$$\E\left[\frac{(x-\mu)^4}{4}\right] = \frac{1}{4}\int(x-\mu)^4N(x|\mu, \tau^{-1/2})\d x = \frac{3}{4\tau^2}$$
+	In terms of the integral above, we have 
+	\begin{align*}
+		&\int(x-\mu)^2\frac{\tau^{1/2}}{\sqrt{2\pi}}\exp\left(-\frac{\tau(x-\mu)^2}{2}\right)\d x = \frac{1}{\tau}\\
+		\Rightarrow&\int(x-\mu)^2\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{\tau(x-\mu)^2}{2}\right)\d x = \tau^{-\frac{3}{2}}\\
+		\Rightarrow&-\int\frac{(x-\mu)^4}{2}\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{\tau(x-\mu)^2}{2}\right)\d x = -\frac{3}{2} \tau^{-\frac{5}{2}}\\
+		\Rightarrow&\int(x-\mu)^4\frac{\tau^{1/2}}{\sqrt{2\pi}}\exp\left(-\frac{\tau(x-\mu)^2}{2}\right)\d x = 3 \tau^{-2}
+	\end{align*}
+	Therefore,
+	$$\frac{\d\log f}{\d\tau}=\frac{1}{4\tau^2}-\frac{1}{2\tau^2}+\frac{3}{4\tau^2} = \frac{1}{2\tau^2}\propto \frac{1}{\tau^2}$$
+	
+	
+	\paragraph{Ex 3.}
+	For Poisson distribution with parameter $\lambda$,
+	\begin{equation*}
+		\begin{aligned}
+			&f(n|\lambda) = e^{-\lambda} \frac{\lambda^n}{n!}\\
+			&\E (I(\lambda)) = \E\left[(\frac{n}{\lambda}-1)^2\right] = \E\left[1+\frac{n^2}{\lambda^2}-\frac{2n}{\lambda}\right] = -1+\E\left[\frac{n^2}{\lambda^2}\right]
+		\end{aligned}
+	\end{equation*}
+	For $\E\left[\frac{n^2}{\lambda^2}\right]$, we use the property
+	$$\sum_{n=0}^{\infty}n \frac{e^{-\lambda}\lambda^n}{n!} = \lambda$$
+	Therefore,
+	$$\E\left[\frac{n^2}{\lambda^2}\right] = 1+\frac{1}{\lambda}$$
+	$$\Rightarrow \E\left[I(\lambda)\right] \propto \sqrt{\frac{1}{\lambda}}$$
+	
+	
+	\paragraph{Ex 4.}  Now we have the model $x=\theta + \varepsilon$ and $\varepsilon\sim N(0,\tau^{1/2})$ How to estimate the parameter $\theta$?
+	\subparagraph{Case 1} $\tau$ fixed, and let $p(\theta)\sim N(\theta| 0, \lambda^1/2)$
+	$$p(\theta|x)\propto p(x|\theta)p(\theta) = \frac{1}{\sqrt{2\pi\lambda}}exp\left(-\frac{\theta^2}{2\lambda}\right)\frac{1}{\sqrt{2\pi\tau}}\exp\left(-\frac{(x-\theta)^2}{2\tau}\right)$$
+	For the exponential part,
+	\begin{align*}
+		&\exp\left(-\frac{\theta^2}{2\lambda}\right)\cdot\exp\left(-\frac{(x-\theta)^2}{2\tau}\right)\\
+		=&\exp\left(\left(\frac{1}{\tau\lambda}+\frac{1}{\tau}\right)\theta^2 - \frac{2\theta x}{\tau}\right)
+	\end{align*}
+	Therefore, the prior and the posterior are conjugated.
+	$$\Rightarrow p(\theta|x)\propto N\left(\theta\left|\frac{\lambda x}{\lambda+\tau}, \left(\frac{\lambda\tau}{\lambda + \tau}\right)^{1/2}\right.\right)$$ 
+	
+	\subparagraph{Case 2} Suppose $\theta,\tau$ are all parameters. Method 1 is to let $\theta\upmodels \tau\Rightarrow p(\theta, \tau)=p(\theta)p(\tau)$
+	\begin{align*}
+		p(\theta, \tau|x)& = p(x|\theta, \tau)\cdot p(\theta,\tau)\\
+		&=p(x|\theta, \tau)p(\theta)p(\tau)
+	\end{align*}
+
+	Provide two different priors:
+	$$p(\theta)\sim N(0,\lambda^{1/2})\quad \Gamma(\tau)\sim Ga(0,\frac{\beta}{2})$$
+	Compute the posterior.
+	$$p(\theta, \tau|x) = \frac{1}{\sqrt{2\pi}}\tau^{1/2}\exp\left(-\frac{\tau(x-\theta)^2}{2}\right)\frac{\lambda^{1/2}}{\sqrt{2\pi}}\exp\left(-\frac{\lambda\theta^2}{2}\right)\left(\frac{\beta}{2}\right)^\alpha \exp\left(-\frac{\beta \tau}{2}\right)\tau^{\alpha-1}/\Gamma(\alpha)$$
+	Let $\alpha$ replace $\alpha/2$
+	\begin{align*}
+		 \L&=\tau^{\frac{\alpha+1}{2}-1} \exp\left(-\frac{\tau}{2}\left((x-\theta)^2+\beta\right)\right)\exp\left(-\frac{\lambda\theta^2}{2}\right)\lambda^{1/2}\\
+		\ln \L &= \left(\frac{\alpha+1}{2}-1\right)\ln \tau - \frac{\tau}{2}\left((x-\theta)^2+\beta\right)+\frac{1}{2}\ln \lambda - \frac{\lambda\theta^2}{2}\\
+		\text{Let }Q(\theta, \tau) = -2\ln \L&= -(\alpha-1)\ln \tau - \tau ((x-\theta)^2+\beta)-\ln\lambda +\lambda \theta^2
+	\end{align*}
+	\begin{eqnarray}
+		\min Q\Rightarrow\left\{
+		\begin{array}{ll}
+			\frac{\partial Q}{\partial \theta}=-2\tau(x-\theta)+2\lambda\theta=0\\
+			\frac{\partial Q}{\partial \tau}=\frac{1-\alpha}{\tau}+(x-\theta)^2+\beta = 0
+		\end{array}
+		\right.
+	\end{eqnarray}
+	Check the result, the prior and posterior in non-conjugate under the hypothesis. So, this is not a good solution.
+	
+	The second way is to suppose $\theta$ is depend on $\tau$  where $p(\theta| \tau)\sim N\left(0, (\lambda\tau)^{1/2}\right)$ and $\tau\sim Ga(\alpha, \beta)$. In other words,  $p(\theta,\tau) = p(\theta|\tau)p(\tau)$
+	Again, compute the posterior.
+	\begin{align*}
+		\L &= \tau^{\frac{\alpha+1}{2}-1}\exp\left(-\frac{\tau}{2}(x-\theta)^2+\beta\right)\exp\left(-\frac{\lambda\tau\theta^2}{2}\right)(\tau\lambda)^{1/2}\\
+		&=\tau^{\alpha/2}\exp\left[-\frac{\tau}{2}\left((x-\tau)^2+\beta+\lambda\theta^2\right)\right]\\
+		\ln \L &= \frac{\alpha}{2}\ln\tau - \frac{\tau}{2}\left((x-\theta)^2+\beta+\lambda\theta^2\right)=Q
+	\end{align*}
+	The optimal condition:
+	\begin{eqnarray}
+		\left\{
+		\begin{array}{ll}
+			\frac{\partial Q}{\partial \theta} = \tau\left(-(x-\theta)+\lambda\theta\right) = 0\\
+			\frac{\partial Q}{\partial \tau} = \frac{\alpha}{2}\frac{1}{\tau} - \frac{1}{2}\left((x-\theta)^2+\beta+\lambda\theta^2\right)=0
+		\end{array}
+		\right.
+	\end{eqnarray}
+	This time we can a conjugate result which means when using MAP algorithm we can guarantee the convergence.
+	
+	
+\section{Moment Generation Function}
+	\begin{definition}
+		The \textbf{moment-generating function} of a random variable $X$ is 
+		$$\psi_X(t)=\E\left(e^{tx}\right) = \int e^{tx}\d F_X(x)$$
+	\end{definition}
+	
+	According to the definition of moment generation function, we have the following attributes:
+	\begin{itemize}
+		\item $\psi_X'(0)=\int x\d F_X(x)$
+		\item The exchangeabilty of deriviative and integral $\psi_X^(k)(0) = \int \d F_X(x) = \E (x^k)$
+		\item Laplace Transformation: $\L(t) = \E(e^{-tx})=\int e^{-tx}\d F_X(x)$. 
+			Considering any measure $\mu$:
+			$$\L(\mu, t) = \int \exp(-tx)\cdot\mu (\d x)$$
+	\end{itemize}
+
+	\begin{definition}[completely monotone]
+		A function $g: (0,\infty)\mapsto \R$ is \textbf{completely monotone} function if the $f$ is of class $C^\infty$ which means $\infty$ deriviative and $(-1)^ng^{(n)}\geq 0$ for all $n\in N\cup \{0\}$ and $\lambda>0$.
+	\end{definition}
+
+	\begin{theorem}[Bernstein Theorem]
+		Let $g:(0,\infty)\mapsto \R$ be a c.m. function. Then it is the Laplace Transform of a unique measure $M$ on $\left[0, \infty\right)$, i.e, for all $\lambda>0$
+		$$g(\lambda) = \int^{\infty}_0\exp(-\lambda t)\cdot (\d t) = \L(\mu, t)$$
+		Inversely, whenever $\L(\mu, \lambda)<\infty $ for every $\lambda>0$, $\lambda \mapsto \L(\mu,\lambda)$ is a c.m. function.
+	\end{theorem}
+	\begin{proof}
+		First of all, we have a corollary.
+		$$g(0+) = 1\quad g(+\infty)=0$$
+		We can also regard $\mu(\d t)=F(\d t)$ as a probability measure.
+		Then the original statement equals to:
+		$$g(\lambda) = \int\exp(-\lambda t)\cdot F(\d t)$$
+		According to Taylor expansion: for any $a>0$ and $n\in N$
+		\begin{align*}
+			g(\lambda) &= \sum_{k=0}^{n-1}\frac{g^{(k)}a}{k!}(\lambda -a)^k + \int_a^\lambda \frac{g^{(n)}(s)}{(n-1)!}(\lambda-s)^{n-1}\d s\in (a,\lambda)\\
+			& = \underbrace{\sum_{k=0}^{n-1}\frac{(-1)^k g^{(k)}a}{k!}(a - \lambda)^k}_{\alpha} + \underbrace{\int^a_\lambda \frac{(-1)^ng^{(n)}(s)}{(n-1)!}(s-\lambda)^{n-1}\d s}_{\beta}
+		\end{align*}
+		For $a>\lambda$: $(\alpha)\geq 0$
+		\begin{align*}
+			&\lim_{a\to \infty}\int_\lambda^a \frac{(-1)^ng^{(n)}(s)}{(n-1)!}(s-\lambda)^{n-1}\d s\\
+			= & \int_\lambda^\infty \frac{(-1)^ng^{(n)}(s)}{(n-1)!}(s-\lambda)^{n-1}\d s\\
+			\leq & \varphi (\lambda)
+		\end{align*}
+		Let $$\rho_k(\lambda)=\lim\limits_{a\to\infty}\frac{(-1)^kg^{(k)}(a)}{k!}(a-\lambda)^k$$
+		Obviously, the $\rho_k(\lambda)$ is independent to $\lambda$, since 
+		$$\rho_k(\nu) =\lim\limits_{a\to \infty} \frac{(-1)^kg^(k)a}{k!}\cdot\underbrace{\frac{(a-\nu)^k}{(a-\lambda)^k}}_{\text{=1}}(a-\lambda)^k$$.
+		And
+		$$g(+\infty)=0 \Rightarrow\rho_k=0$$
+		So, 
+		\begin{align*}
+			& g(\lambda) = \sum_{k=0}^{n-1}\rho_k + \int_\lambda^\infty \frac{(-1)^ng^{(n)}(s)}{(n-1)!}(s-\lambda)^(n-1) \d s\\
+			\Rightarrow & g(\lambda)=\int_\lambda^\infty \frac{(-1)^ng^{(n)}(s)}{(n-1)!}(s-\lambda)^{(n-1)}\d s
+		\end{align*}
+		On the other hand, from $g(0+)=1$, we can move forward.
+		$$\Rightarrow 1 = \lim_{\lambda\to 0}g(\lambda)=\int_0^\infty \underbrace{\left(\frac{(-1)^ng^{(n)}(s)}{(n-1)!}s^{n-1}\right)}_{(\gamma)} \d s\Rightarrow\gamma \text{ can be regarded as a p.d.f}$$ 
+		$$\Leftrightarrow g(\lambda) = \int_0^\infty \left(1-\frac{\lambda}{s}\right)_+^{n-1}\frac{(-1)^ng^{(n)}s}{(n-1)!}\d s, \quad \text{ where } (a)_+ := \max(a,0)$$
+		Let $s=\frac{n}{t}$, $\d s = |s^{-2}n|\d t$. $g(\lambda)$ can be rewritten as 
+		\begin{align*}
+			g(\lambda)& = \int_0^\infty \left(1-\frac{\lambda t}{n}\right)^{n-1}_+ \frac{(-1)^ng^{(n)}(\frac{n}{t})}{(n-1)!}\left(\frac{n}{t}\right)^{n-1} t^{-2} n \d t\\
+			& = \int_0^\infty \left(1-\frac{\lambda t}{n}\right)^{n-1}_+ \frac{(-1)^n g^{(n)}(\frac{n}{t})(\frac{n}{t})^{n+1}}{n!} \d t
+		\end{align*}
+		Therefore,
+		$$\lim_{n\to\infty}g(\lambda)=\int_0^\infty \exp(-\lambda t)f(t) \d t$$
+	\end{proof}
+
+	\begin{corollary}[Mixture of Bartlett-Fejer Kernels]
+		Let $g(t)$ be a function that is symmetric about the origin, integrable, convex and twice differentiable on $(0, +\infty)$ and $g(0+)=1$ and $g(+\infty)=0$. Then 
+		$$g(t) = \int_0^\infty \frac{1}{s}\left(1-\frac{t}{s}\right)_+ s g''(s)\d s, \quad t>0$$
+	\end{corollary}
+\section{Homework}
+\begin{enumerate}[(1)]
+	\item Compute the expectation in \textbf{Ex 2.}
+	\item Compute the integrals:
+		\begin{itemize}
+			\item $m_0 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2)\d x$
+			\item $m_0 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2)x\d x$
+			\item $m_0 = \int_{-\infty}^{\infty} \Phi(x) N(x|\mu, \sigma^2)(x-m_0)^2\d x$
+		\end{itemize}
+		where $\Phi(x) = \int_{-\infty}^{x} \frac{1}{\sqrt{2\pi}}\exp\left(-\frac{t^2}{2}\right)\d t$
+	\item $f(x,\theta)= \theta^x(1-\theta)^{1-x}$
+		\begin{itemize}
+			\item Compute $\pi(\theta)$ or $\E[I(\theta)]$
+			\item If $\theta = \sin^2\alpha$, compute $\pi(\alpha)$
+		\end{itemize}
+	\item In \textbf{Ex 4.} case 2, compute the posterior given the following prior:
+		\begin{itemize}
+			\item Uniformative $p(\tau)\propto 1$
+			\item $\pi\propto \frac{1}{\tau^2}$. Actually we can get a Gamma posterior.
+		\end{itemize}
+\end{enumerate}

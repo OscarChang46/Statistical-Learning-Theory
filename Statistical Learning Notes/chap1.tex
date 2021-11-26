@@ -1,0 +1,71 @@
+\chapter{Introduction}
+
+\section{Problem Definition}
+Generally, we denote a data set as $X$ and label as $Y$.
+$$\textbf{X}=
+\begin{bmatrix}
+	x_{11} & \dots & x_{1p} \\
+	x_{21} & \dots & x_{2p} \\
+	\vdots & \ddots& \vdots \\
+	x_{n1} & \dots &x_{np}
+\end{bmatrix} 
+=
+\begin{bmatrix}
+	\Vec{x_1}\\
+	\vdots \\
+	\Vec{x_n}
+\end{bmatrix}
+$$
+\subsection{Machine Learning Problem}
+$$\text{Unsupervised Learning}
+\begin{cases} 
+	\text{Dimension Reduction} (\vec{x_i}\in\R^p\mapsto \vec{z_i}\in\R^q, p>q) & \begin{cases}
+		\text{linear mapping} \\
+		\text{non-linear mapping}
+	\end{cases} \\
+	\text{Clustering} & \\
+\end{cases}
+$$
+
+$$
+\text{supervised Learning}
+\begin{cases}
+	\text{classification}\begin{cases}
+		y:output\in \{1,\dots,k\}\\
+		x:input
+	\end{cases}\\
+	\text{regression}\\
+	\text{Ranking } \vec{x_1},\dots,\vec{x_n}\mapsto y <\text{Isotonic Regression}>
+\end{cases}
+$$
+
+\subsection{Method}
+	\subsubsection{Frequentist View}
+	The frequentist approach views the model parameters as unknown constants and estimates them by matching the model to the training data using an approximate metric.
+	
+	$\{(\vec{x_i},y_i)\}_{i=1}^n,\quad y\in\R, \quad \vec{x_i}\in \R^p$ 
+	$\quad \Rightarrow \quad \text{least sqr: }\sum\limits_{i=1}^{n}(y_i - \vec{x_i}^Ta)^2$\\
+	$$\text{MLE: } y_i\stackrel{i.i.d}{\sim}N(x^Ta,\sigma^2)=\frac{1}{(2\pi)^{1/2}\sigma}\left( -\frac{(y_i - x_i^Ta)^2}{2\sigma^2}\right)$$
+	
+	\subsubsection{Bayesian}
+	$$y\sim N(x^Ta, \sigma^2) \quad \text{prior distribution:} a\sim N(0, \lambda^2)$$
+	$$\Rightarrow P(a|x), \text{ for posterior probability}$$
+	\begin{enumerate}[(1)]
+		\item $\prod_{i=1}^{n}P(x_i|a)\Leftrightarrow-\sum_{i=1}^{n}\log P(x_i|a)$
+		\item $a\sim P(a|\lambda), \quad P(a|x)=\frac{P(x|a)P(a|\lambda)}{P(x)}\Rightarrow $ \begin{enumerate}[i]
+			\item $\max P(a|x)$
+			\item sample
+		\end{enumerate}
+	\end{enumerate}
+
+
+\subsection{Parameterize}
+In a parametrical model, the number of parameters is fixed once and, for all, irrespective of the number of training data.
+
+\subsection{Non-Parameter}
+The number of parameter grows as the number training data increases. For example, the \textit{logistic regression} and \textit{nearest neighbor} method.
+\paragraph{Logistic Regression}
+$$P(y=1|x,a)=\frac{1}{1+\exp(-x^Ta)}$$
+\paragraph{Nearest Neighbor}
+\leavevmode
+Put an KNN pic.

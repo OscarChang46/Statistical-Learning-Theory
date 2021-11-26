@@ -1,0 +1,105 @@
+\chapter{Probability}
+
+\section{Sample Space and Events}
+\leavevmode
+The sample space $\Omega$ is the set of possible outcomes of an experiment $w\in \Omega$ which is called \textbf{sample outcome} (realization or elements). Subsets of $\Omega$ are called \textbf{Events}. Given an event $A$, let $A^C=\{w\in Omega,w\notin A\}$ denote \textbf{the complement of A}.
+\subsubsection{monotonicity}
+\begin{enumerate}
+	\item A sequence of sets $A_1,\dots,A_n,\dots$ is \textbf{monotonic increasing} if $A_1\subset A_2 \subset A_3\subset\cdots$, we define $\lim\limits_{n\to\infty}A_n=\mathop{\bigcup}\limits_{1=1}^{\infty}A_i$
+	\item  A sequence of sets $A_1,\dots,A_n,\dots$ is \textbf{monotonic decreasing} if $A_1\supset A_2 \supset A_3\supset \cdots$, we define $\lim\limits_{n\to\infty}A_n=\mathop{\bigcap}\limits_{i=1}^{\infty}A_i$
+\end{enumerate}
+
+	\paragraph{Ex 1.}
+		$\Omega = \R, A_i=\left[0, 1/i\right), \text{for }i=1,2,...$
+		
+		$$\bigcup_{i=1}^{\infty}A_i=\left[0,1\right),\quad \bigcap_{i=1}^{\infty}A_i=\{0\}$$
+		
+
+\section{$\sigma$-Field and Measures}
+
+\begin{definition}
+	Let $\mathscr{A}$ be a collection of subsets of a sample space $\Omega$. $\A$ is called \textbf{$\sigma$-field} (or $\sigma$-algebra) iff it has the following properties:
+	\begin{enumerate}[(i)]
+		\item $\emptyset \in \A$
+		\item If $A\in \A \Rightarrow A^C \in \A$
+		\item if $A_i \in \A\Rightarrow \mathop{\bigcap}\limits_{i=1}^{\infty}A_i\in \A	$ 
+	\end{enumerate}
+	A pair $(\Omega, \A)$ is called a \textbf{measurable space}. The element of $\A$ are called \textbf{measurable sets}.
+\end{definition}
+Therefore, $\emptyset \in \A;\quad \mathop{\bigcap}_{i=1}^{\infty} A_i\in \A$.
+
+\paragraph{Ex 2.} Let $A$ be a non-empty proper subset of $\Omega$ ($A\neq \emptyset,A\neq\Omega$). The minimum $\sigma$-field is $\{\emptyset,\Omega, A, A^C\}$
+
+\paragraph{Ex 3.} $\Omega=\R$, $\A$ is the smallest $\sigma$-field that contains all the finite open subsets of $\R$, which is called the \textbf{Borel $\sigma$-field} $\B(\R)$.
+
+
+\begin{definition}
+	Let $(\Omega, \A)$ be a measurable space. A set function $v$ defined in $\A$ is called a \textbf{measure} (or belief) iff
+	\begin{enumerate}[(i)]
+		\item $0\leq v(A)\leq \infty$ for any $A\in \A$
+		\item $v(\emptyset) = 0$
+		\item if $A_i\in \A$ and $A_i$ are disjointed ($A_i\cap A_j=\emptyset$, if $i\neq j$) then $v(\mathop{\bigcup}\limits_{i=1}^{\infty}A_i)=\sum\limits_{i=1}^{\infty}v(A_i)$
+	\end{enumerate}
+Triple $(\Omega, \A,v)$ is called a \textbf{measure space}. If $v(\Omega)=1$, the $v$ is called a \textbf{probability measure} and denote it by $P$. Moreover, $(\Omega, \A, P)$ is called a probability space.
+\end{definition}
+
+
+	\paragraph{Ex 4.(Counting Measure)} Let $\Omega$ be a sample space, $\A$ is the collection of all subsets and $v(A)$ is the number of elements in $A$.
+	
+	\paragraph{Ex 5. Lebesgue Measure} $(\R,\B)\longmapsto m(\left[a,b\right])=b-a$
+\subsubsection{Properties}
+	\begin{enumerate}[(i.)]
+		\item $A\subset B \Rightarrow P(A)\leq P(B)$. (Monotonicity)
+		\begin{lemma}
+			For any events $A$ and $B$, $P(A\cup B)=P(A) + P(B) - P(A\cap B)$
+		\end{lemma}
+		\item If $A_n\to A, P(A_n)\to P(A)$, $n\to \infty$ (Continuity)
+		\begin{proof}
+			Suppose $A_1\subset\A_2\subset\cdots$, let $A=\lim\limits_{n\to\infty}A_n=\mathop{\bigcup}\limits_{i=1}^{\infty}A_i$\\
+			\begin{align*}
+				B_1 &= A_1 \\
+				B_2 &= \{w\in\Omega,w\in A_2,w\notin A_1\}\\
+				B_2 &= \{w\in\Omega,w\in A_3,w\notin A_1,A_2\}\\
+				\dots &
+			\end{align*}
+			$$\Rightarrow A_n = \mathop{\bigcup}\limits_{i=1}^{n}A_i = \mathop{\bigcup}\limits_{i=1}^{n}B_i$$
+			$$ P(A_n)=P\left(\mathop{\bigcup}\limits_{i=1}^{n}B_i\right)=\sum\limits_{i=1}^{\infty}P(B_i)=P\left(\sum\limits_{i=1}^{\infty}B_i\right)=P(A)$$
+			
+			$$\tilde{A_1}\Leftarrow A_1\cap A,\quad \tilde{A_2}\Leftarrow(A_1\cup A_2)\cap A, \dots, \tilde{A_n}=\left(\mathop{\bigcup}\limits_{i=1}^{n} A_i\right)\cap A$$
+		\end{proof}
+	\end{enumerate}
+
+\section{Independent Events}
+
+\begin{definition}[Independence]
+	Two events $A$ and $B$ are \textbf{independent} if 
+	$$P(A,B)\triangleeq P(A\cap B)=P(A)P(B) \quad (A\upmodels B)$$
+	For a set of events $\{A_i,i\in I\}$, $A_i$ are independent if $P(\mathop{\bigcap\limits_{i\in I}}A_i)=\prod\limits_{i\in I} P(A_i)$ for every finite subset $i$ in $I$.
+\end{definition}
+
+
+\begin{definition}[Conditional Probability]
+	Assume $P(B)>0$, conditional probability of $A$ given $B$ is:
+	$$P(A|B)=\frac{P(AB)}{P(B)}$$
+\end{definition}
+
+\begin{lemma}
+	If $A\upmodels B$, then $P(A|B)=P(A)$.
+\end{lemma}
+
+\subsection{Bayes' Theorem}
+
+\begin{theorem}[The Law of Total Probability]
+	Let $A_1, A_2, \dots, A_n$ be a partition of $\Omega$, which means:
+	\begin{enumerate}[(1)]
+		\item $\mathop{\bigcup}\limits_{i=1}^{k}A_i=\Omega$
+		\item $A_i\cap A_j=\emptyset$ for $i\neq j$
+	\end{enumerate}
+for any event $B$, we have
+$$P(B) = \sum_{i=1}^{k}P(B|A_i)P(A_i)$$
+\end{theorem}
+
+\begin{theorem}[Bayes' Theorem]
+	Let $A_1, A_2, \dots, A_n$ be a partition of $\Omega$, such that $P(A_i)>0$. If $P(B)>0$, then
+	$$P(A_i|B) = \frac{P(B|A_i)P(A_i)}{\sum_{j=1}^{k}P(B|A_j)P(A_j)}$$
+\end{theorem}

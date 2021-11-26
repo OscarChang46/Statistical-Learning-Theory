@@ -1,0 +1,412 @@
+\chapter{Random Variables}
+
+\section{Random Variable}
+\begin{definition}
+	In a probability space $P(\Omega, \A, P)$, a random variable is measurable map which means for each $x$, we have $\{w:X(x)\leq x\}\in \A$ where $X:\Omega\to \R$ that assigns a real number $X(w)$ to each outcome $w$.
+\end{definition}
+
+\begin{definition}
+	For random variable $x$, $A\subset \R$, $X^{-1}(A)=\{w\in\Omega, X(w)\in A\}$.Let
+	$$P(X\in A)\triangleeq P(X^{-1}(A))=P(\{w\in\Omega, X(w)\in A\})$$
+	$$P(X\in x)\triangleeq P(X^{-1}(x))=P(\{w\in\Omega, X(w)=x\})$$
+\end{definition}
+
+\paragraph{Ex 1.} Toss the dice
+
+\begin{table}[H]
+	\begin{minipage}{0.48\linewidth}
+			\centering
+			\begin{tabular}{c|c}
+				\toprule[2pt]
+				$x$ & $P(X=x)$ \\ \midrule[1pt]
+				0 & 1/4\\
+				1 & 1/2\\
+				2 & 1/4\\
+				\bottomrule[2pt]
+			\end{tabular}
+	\end{minipage}
+	\begin{minipage}{.48\linewidth}
+			\centering
+			\begin{tabular}{c|c|c}
+				\toprule[2pt]
+				$w$ & $P(\{w\})$ & $X(w)$ \\
+				\midrule[1pt]
+				$TT$ & 1/4 & 0\\
+				$TH$ & 1/4 & 1\\
+				$HT$ & 1/4 & 1\\
+				$HH$ & 1/4 & 2\\
+				\bottomrule[2pt]
+			\end{tabular}
+	\end{minipage}
+	\caption{$P(X=x)$ and $P(\{w\})$}
+	\label{zrotate}
+\end{table}
+
+\section{Cumulative Distribution Function}
+\begin{definition}[C.D.F.]
+	We call a function $F_X$ is a cumulative distribution function of random variable $X$ if $F_X: \R\mapsto \left[0,1\right]$ and $F_X(x)=P(X\leq x)$
+\end{definition}
+
+\begin{theorem}
+	Let $X$ have a cdf $F$ and $Y$ have a cdf $G$. If $F(x)=G(x)$ for all $x$, then $P(X\in A)=P(Y\in A)$ for all measurable $A$.
+\end{theorem}
+
+\begin{theorem}
+	A function $F$ mapping: $\R\to\left[0,1\right]$ is a cdf for probabilities $P$ iff
+	\begin{enumerate}[(i)]
+		\item $F$ is non-decreasing
+		\item $F$ is normalized, which means $\lim\limits_{x\to -\infty}F(x)=0$ and $\lim\limits_{x\to \infty}F(x)=1$
+		\item $F$ is right-continuous, which means $F(x) = F(x^+)$
+		\begin{proof}[(Right-continuous Proof)]
+			Suppose $x$ is a real number. Let $y_1,y_2,\dots$ and $y_1>y_2>\cdots$, $\lim y_n = x$. Let $A_i=\left(-\infty, y_i\right]$ and $A=\left(-\infty, x\right]$. Note that
+			\begin{enumerate}[(1)]
+				\item $A = \mathop{\bigcap}\limits_{i=1}^\infty A_i$
+				\item $A_1\supset A_2\supset \cdots$. Because of the monotonicity, we have $\lim\limits_{i\to \infty}P(A_i)=P\left(\mathop{\bigcap}\limits_{i=1}^\infty A_i\right)$
+			\end{enumerate}
+			For $F(x)$,
+			$$F(x)=P(A)=P\left(\mathop{\bigcap}\limits_{i=1}^\infty A_i\right)=\lim\limits_{i\to\infty}P(A_i)=\lim\limits_{i\to\infty}F(y_i)$$
+			This is right approaching.
+		\end{proof}
+	\end{enumerate}
+\end{theorem}
+\begin{lemma}
+	$P(X<x)=F_X(x^-)$
+\end{lemma}
+
+\section{Probability Mass/Density Function}
+\begin{definition}
+	For discrete random variable $X=\{x_i\}_{i=1}^{\infty}$, the \textbf{probabilistic mass function} is defined as $f_X(x)=P(X=x)$ which satisfies $\sum\limits_{x\in X}f_X(x)=1$.\\
+	For continuous random variable X, if there exists a function $f_X(x)$ such that $f_X(x)\geq0$ for all $x$, $\int_{-\infty}^{\infty}f_X(x)\d x=1$ and for any $a\leq b$, $\int_{a}^{b}f_X(x)\d x=P(a<x<b)$, we call such $f_X(x)$ as \textbf{probabilistic density function (pdf)}.
+\end{definition}
+
+The relationship between pdf and cdf is: 
+$$F_X(x)=\int_{-\infty}^{x}f_X(t)\d t$$
+$$F_X'(x)= f_X(x)$$
+
+
+\begin{lemma}
+	Let $F$ be the cdf for a random variable $X$, then:
+	\begin{enumerate}[(1)]
+		\item $P(X=x)=F_X(x)-F_X(x^-)$
+		\item $P(x<X\leq y)=F_X(y)-F_X(x)$
+		\item $P(X>x)=1-F_X(x)$
+		\item If $x$ is continuous, then $F(b)-F(a)=P(a<X<b)=P(a\leq X<b)=P(a<X\leq b)=P(a\leq X\leq b)$
+	\end{enumerate}
+\end{lemma}
+
+\begin{definition}[inverse cdf]
+	For random variable $X$ with cdf, the \textbf{inverse cdf} is defined by $F^{-1}(q)=\inf \{x:F(x)>q\}$ for $q\in\left[0,1\right]$
+\end{definition}
+
+For example the quartile function $F^{-1}(\frac{1}{4})$ is a kind of inverse cdf.
+
+
+\begin{definition}[Mode]
+	The \textbf{mode} of discrete probability distribution is the value at which its pmf takes its maximum value.
+\end{definition}
+
+Some remarks:
+\begin{enumerate}[(1)]
+	\item pdf maybe infinite
+	\item $\sum f_X(x)=1$ or $\int F_X(x)\d x=1$ (Lebesgue Integral) can be also written as $\int \d F_X(x)=1$ (Laplace-Stieltjes Integral) or $\int F_X(\d x)$. 
+	\item $X$ and $Y$ are equal in distribution if $F_X(x)=F_Y(x)$ for any $x$
+\end{enumerate}
+
+\section{Discrete Distribution}
+	\subsection{Uniform Discrete Distribution}
+		For $X={x_1,\dots,x_n}$, the pdf of $X$ is
+		\begin{eqnarray}
+			f_X(x)=\left\{
+			\begin{array}{ll}
+				1/n & x\in \{x_1,\dots,x_n\}\\
+				0   & \text{otherwise}
+			\end{array}
+			\right.
+		\end{eqnarray}
+	\subsection{Point Mass Distribution}
+		\begin{eqnarray}
+			f_X(x)=\left\{
+			\begin{array}{ll}
+				1 & x=a \\
+				0 & \text{otherwise}
+			\end{array}
+			\right.
+		\end{eqnarray}
+	\subsection{Bernorlli Distribution}
+		\begin{eqnarray}
+			f_X(x)=\left\{
+			\begin{array}{ll}
+				p & x=1\\
+				1-p & 0
+			\end{array}
+			\right. p\in(0,1)
+		\end{eqnarray}
+	The $f_X(x)$ can also be written as:
+	$$F_X(x)=p^x(1-p)^{(1-x)}$$
+	\subsection{Poisson Distribution}
+	If a random variable $X\sim Poisson(\lambda)$, the $f_X(x)$ is
+	$$f_X(x)=e^{-\lambda}\frac{\lambda^x}{x!}\quad (\lambda>0, x\geq0)$$
+	
+	If we have two random variable that subject to two Poisson distribution with different parameter, which $X_1\sim Possion(\lambda_1)$ and $X_2\sim Poisson(\lambda_2)$, then $X_1 +X_2 \sim Poisson (\lambda_1 + \lambda_2)$.
+	
+	\subsection{Binomial Distribution}
+		\begin{eqnarray}
+			f_X(x)=\left\{
+				\begin{array}{ll}
+					\tbinom{n}{x}p^x(1-p)^{n-x} & x = 0,1,\dots,n\\
+					0 & \text{otherwise}
+				\end{array}
+			\right.
+		\end{eqnarray}
+	If $X_1\sim Bi(n_1, p)$ and $X_2 \sim Bi(n_2, p)$, then $X_1+X_2\sim Bi(n_1+n_2, p)$. The Binomial distribution is always used for describing appearing numbers  of text or genes.
+	
+		\begin{corollary}
+			Traditionally, the value of the binomial coefficient for nonnegative integers n and k is given by
+			\begin{eqnarray}
+				\tbinom{n}{k}=\left\{
+				\begin{array}{ll}
+					\frac{n!}{k!(n-k)!} & \text{for } 0\leq k < n\\
+					0 & \text{otherwise}
+				\end{array}
+				\right.
+			\end{eqnarray}
+			
+			For combinatorial number in Binomial distribution, we extend the number field. Let $r$ be a real number and $k$ be an integer, the value of the binomial coefficient for $n$ and $k$ is $$\tbinom{n}{k}=\frac{n!}{k!(n-k)!}=\frac{\Gamma(n+1)}{\Gamma(k+1)\Gamma(n-k+1)} \quad \text{where } \tbinom{n}{0}=1 \text{ and } \tbinom{n}{1}=n$$.
+			
+			For \textbf{Binomial Theorem}, we have an extension
+			$$(1+z)^r=\sum\limits_{k} \tbinom{r}{k}z^k \quad \text{where } |z|<1$$
+		\end{corollary}
+		\begin{proof}[The extension of Binomial Theorem]
+			By using Taylor expansion, 
+			\begin{align*}
+				f(z) &= \frac{f(0)}{0!}z^0+\frac{f'(0)}{1!}z+\frac{f''(0)}{2!}z^2+\cdots \\
+				     &=\sum\limits_{k\geq 0}\frac{f^k(0)}{k!}z^k
+			\end{align*}			
+		where $f(z)=(1+z)^r$
+		\end{proof}
+	
+	\subsection{Negative Binomial Distribution}
+	Now we consider the coin tossing problem, how many time we toss if we get head $k$ times? We can describe this distribution as \textbf{Negative Binomial Distribution}.
+	
+	If $X\sim NB(r,p)$, 
+	$$P(X=k)=\tbinom{k+r-1}{k}p^k(1-p)^r=(-1)\tbinom{-r}{k}p^k(1-p)^{r}$$
+	\subsection{Geometric Distribution}
+	Continue with the formula above, taking $r=1$, we get \textbf{Geometric Distribution}
+	$$P(X=k)=(1-p)^{k-1}p, k=1,2,\dots$$
+	
+	\subsection{Relationship between NB and Poisson Distribution}
+	Taking $p=\frac{\lambda}{\lambda+r}$, if $r\to \infty$, then $p\to 0$.
+	\begin{align*}
+		f_X(x) &= \frac{(k+r-1)\cdots(r)}{k!}\left(\frac{\lambda}{\lambda+r}\right)^k\left(\frac{\lambda}{\lambda+r}\right)^r \\
+		       &= \frac{\lambda^k}{k!}\frac{(k+r-1)\cdots r}{(\lambda+r)^k}\frac{1}{(1+\lambda/r)^r}\\
+		       &=e^{-\lambda}\frac{\lambda^k}{k!}
+	\end{align*}
+	\subsection{Homework}
+	Show the following statement (Stirling Formula):
+	\begin{enumerate}[(1)]
+		\item $\lim\limits_{p\to \infty} \frac{\ln\Gamma(p)}{\frac{1}{2}\log(2\pi)+(p-\frac{1}{2})\cdot p-p}=1$
+	\end{enumerate}
+\section{Continuous Distribution}
+	\subsection{Uniform Distribution}
+	$X\sim U(\left[a,b\right])$
+	\begin{eqnarray}
+		f_X(x)=\left\{
+		\begin{array}{ll}
+			\frac{1}{b-a} & x\in\left[a,b\right]\\
+			0 &\text{otherwise}
+		\end{array}
+		\right.
+	\end{eqnarray}
+	
+	\subsection{Gaussian Distribution}
+		$X\sim N(\mu, \sigma^2)$
+		$$f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{1}{2\sigma^2}(x-\mu)^2), \quad \mu\in\R,\sigma>0,x\in\R$$
+ 		Normally, if $\mu=0,\sigma=1$, we called it the \textbf{standard normal distribution} which is denoted as $\Phi(z)$.
+ 		$$\Phi(z)=\int_{-\infty}^{z}\frac{1}{\sqrt{2\pi}}\exp\left(-\frac{t^2}{2}\right)\d t$$
+ 		
+ 	\subsection{Dirac Distribution($\sigma\to 0$)}
+ 		\begin{eqnarray}
+ 			f_X(x)=\left\{
+ 			\begin{array}{ll}
+ 				\infty & x=\mu\\
+ 				0 & \text{otherwise}
+ 			\end{array}
+ 			\right.
+ 		\end{eqnarray}
+ 		Similar to convolution product, the integral of the product of any $g(x)$ and $f(x)$ is defined as 
+ 		$$\int g(x)f(x)\d x=g(\mu)$$
+ 		
+ 	\subsection{Exponential Power Distribution}
+ 	$$f(x)=\frac{1}{2^{\frac{q+1}{q}}\cdot\Gamma(\frac{q+1}{q})\sigma}\exp\left(-\frac{1}{2}\left|\frac{b-\mu}{\sigma}\right|^q\right)$$\footnote{$\Gamma(\alpha) = \int_{0}^{\infty}t^{\alpha-1}\cdot e^{-t}\d t$}
+ 	
+ 	The exponential power distribution has a strong connection with Gaussian Distribution and Laplace Distribution. It will be Gaussian Distribution if take $q$ equals $2$ and be Laplace Distribution if $q=1$.
+ 	
+ 	
+ 	\subsection{General Inverse Gaussian (GIG)}
+ 	$X$ has a \textbf{GIG} if its pdf is
+ 	$$f_X(x)=\frac{(\alpha/\beta)^{r/2}}{2\Kr(\sqrt{\alpha\beta})}x^{r-1}\exp{\left(-\frac{\alpha x + \beta x^{-1}}{2}\right)}, \quad x>0$$ 
+ 	where $\Kr(\cdot)$ is \textbf{the modified Bessel function of the second kind} which is also named \textbf{the Neumann function} with index $r$. $(\alpha, \beta\geq0)$
+ 	
+ 	
+	 	\subsubsection{Some useful integral}
+	 	For $a>0,p>0$
+	 	\begin{itemize}
+	 		\item $\int_{0}^{\infty}x^{p-1}e^{-ax}\d x = a^{-p}\Gamma(p)$
+	 		\item $\int_{0}^{\infty}x^{p+1}e^{-ax^{-1}}\d x = a^{-p}\Gamma(p)$
+	 		\item $\int_{0}^{\infty}x^{p-1}e^{-ax^2}\d x$ = $\frac{1}{2} a^{-\frac{p}{2}}\Gamma\left(\frac{p}{2}\right)$
+	 		\item $x^{-(p+1)}e^{-ax^{-2}}\d x = \frac{1}{2}a^{-\frac{p}{2}}\Gamma\left(\frac{p}{2}\right)$
+	 	\end{itemize}
+	 	
+	 	More generally, for $a>0,p>0\text{ and }q>0$
+	 	\begin{itemize}
+	 		\item $\int_{0}^{\infty}x^{p-1}e^{-ax^q}\d x = \frac{1}{q}a^{-\frac{p}{q}}\Gamma\left(\frac{p}{q}\right)$
+	 		\item $\int_{0}^{\infty}x^{-(p+1)}e^{-ax^{-q}}\d x = \frac{1}{q}a^{-\frac{p}{q}}\Gamma\left(\frac{p}{q}\right)$
+	 	\end{itemize}
+		
+		
+		Properties of Bessel:
+		\begin{enumerate}[(1)]
+			\item $\K_r(u)=\K_{-r}(u)$
+			\item $\K_{r+1}(u) = \frac{r}{u}\K_r(u)+ \K_{r-1}(u)$
+			\item $\K_{1/2}(u) = \K_{-1/2}(u) = \sqrt{\frac{\pi}{2u}}\exp(-u)$
+			\item $u\to 0$
+				\begin{eqnarray*}
+					\left\{
+					\begin{array}{ll}
+						\K_r(u)\sim \frac{1}{2}\Gamma(r)\left(\frac{u}{2}\right)^{-r} & r>0 \\
+						\K_0(u) = \ln(u)
+					\end{array}
+					\right.
+				\end{eqnarray*}
+		\end{enumerate}
+
+	By using these properties, we can get three special cases for GIG: Gamma distribution, Inverse Gamma distribution, and Inverse Gaussian distribution.
+	
+	
+		\subsubsection{Gamma Distribution}	
+		For \textbf{Gamma Distribution}, $\beta = 0 \text{ and } r>0, \alpha>0$, which can also be written as $x\sim Ga(r, \frac{\alpha}{2})$
+		$$f_X(x) = \frac{\alpha^r}{2^r\Gamma(r)}x^{r-1}\exp\left(-\frac{\alpha x}{2}\right)$$
+		If $r=1$, then the \textbf{Gamma Distribution} degenerates to the \textbf{exponential distribution}.
+		
+		If $x_i\sim Ga(r_i, \alpha/2)$, then $\sum\limits_{i=1}^{n}x_i \sim Ga\left(\sum\limits_{i=1}^{n}r_i, \alpha/2\right)$.
+		
+		
+		\subsubsection{Inverse Gamma}
+		For $IG(\tau, \beta/2), \alpha =0, r<0, \beta > 0$
+		$$f_X(x) = \frac{\beta^{\tau}}{2^{\tau}\Gamma(\tau)}x^{-(\tau+1)}\exp\left(-\frac{\beta}{x}\right), \quad \text{where }\tau=-r$$ 
+		
+		\subsubsection{Inverse Gaussian}
+		Taking $r = -\frac{1}{2}$,
+		$$f_X(x)=\left(\frac{\beta}{2\pi}\right)^{\frac{1}{2}} \exp\left(\sqrt{2\rho}\right)x^{-\frac{3}{2}}\exp\left(-\frac{\alpha x+ \beta x^{-1}}{2}\right)$$
+		
+		
+		If $B(t)$ is a Brown process, $C(t) = B(t)+\alpha t,\quad r\in \R$. We have 
+		$${C(t),t\geq0}$$
+		is a Gaussian process. Then the inverse GP $T(t)$ is defined as
+		$$T(t) = \inf\{s>0, C(s)=\sigma t\}$$
+		
+	\subsection{$\chi^2$ Distribution}
+	$\chi^2$ with $p$ degree of freedom. If random variables $x\sim \chi^2_p$, we have
+	$$f_X(x) = \frac{1}{\Gamma\left(\frac{p}{2}\right)2^{p/2}}x^{p/2-1}\exp\left(-\frac{x}{2}\right) \quad x>0$$ 
+	For a sequence of random variables that normally distributed ($z_1,\dots,z_p \iidsim N(0,1)$), the sum of squares of these random variables is $\chi^2$ distributed, which means
+	 $$\sum\limits_{i=1}^{p}z_i^2\sim \chi_p^2.$$ If we have a vector that each dimension is standard normally distributed, then the square of the length of it is Chi-square distributed.
+	
+	\subsection{Beta Distribution}
+	$\alpha>0, \beta>0$. If $X\sim Beta(\alpha , \beta)$, then the pdf of $X$ is
+	$$f_X(x)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}(1-x)^{\beta-1}, 0<x<1$$ 
+	The front part of $F_X(x)$ which is irrelevant to $x$ is the reciprocal of Beta function $Be(\alpha, \beta)$. The definition of $Be(p, q)$ is 
+	$$Be(p,q)=\frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)}$$
+	
+	\subsection{Student-t Distribution}
+	If $X$ is $t$ distributed denoted by $X\sim t_v$, the pdf of $X$ is 
+	$$f_X(x)=\frac{\Gamma\left( \frac{v+1}{2}\right)}{\Gamma\left(\frac{v}{2}\right)}\cdot \frac{1}{\left(1+\frac{x-\mu}{v\sigma^2}\right)^{\frac{v+1}{2}}}\cdot \frac{1}{\sqrt{v\pi}/\sigma}$$
+	
+	\begin{theorem}\footnote{The proof is included as a homework in chapter 3}\\
+		If $v=1 \Rightarrow$ Cauchy distribution.\\
+		If $v\to \infty \Rightarrow$ Gaussian distribution $N(v, \sigma)$.
+	\end{theorem}
+	
+	The t distribution can be also regarded as the scale mixture of normal distribution which can be denoted as $S_t(\mu, \sigma, v)$. There is 
+	$$
+	\int_{0}^{\infty}N(\left.x\right| \mu, (\lambda\tau)^{-1})\underbrace{Ga\left(\tau \bigg|\frac{v}{2},\frac{v}{2}\right)}_{weight}\d \tau$$
+	$$= S_t\left(x|\mu, \lambda^{-1},v\right)$$
+	
+	\paragraph{Ex 2.}
+	Suppose $x\sim Bernoulli(\theta), \quad 0<\theta<1$. We give $\theta$ a prior distribution $Beta(\alpha, \beta)$. Then
+	\begin{align*}
+		p(\theta|x) &\propto p(x|\theta)p(\theta|\alpha, \beta)\\
+		& \propto C\cdot \theta^x(1-\theta)^{1-x}\theta^{\alpha-1}(1-\theta)^{\beta-1}\\
+		& \propto C\cdot \theta^{x+\alpha-1}(1-\theta)^{\beta -x}
+	\end{align*}
+	where $C=\frac{\Gamma(\alpha+\beta+1)}{\Gamma(x+\alpha)\Gamma(\beta-x+1)}$. 	
+	We can easily find that the posterior distribution is \textbf{conjugate} with prior distribution. After that, we can use MAP to find the mode of $\theta$.
+	
+	\paragraph{Ex 3.}
+	Suppose $X\sim N(0, \lambda) = \frac{1}{\sqrt{2\pi}}\lambda^{-1/2}\exp\left(-\frac{x^2}{2\lambda}\right), \quad \lambda>0$. Let $\lambda$ has a prior distribution $Ga\left(x|r,\frac{\alpha}{2}\right)$. Then we can compute $p(\lambda|x)$
+	\begin{align*}
+		p(\lambda|x) &= C\cdot \frac{1}{\sqrt{2\pi}}\lambda^{-1/2}\exp\left(-\frac{x^2}{2\lambda}\right)\lambda^{r-1}\exp(-\frac{\alpha \lambda}{2})\\
+		&\propto  \lambda^{r-\frac{1}{2}-1}\exp\left(-\frac{1}{2}\left(\frac{x^2}{\lambda}+\alpha\lambda\right)\right)
+	\end{align*}
+	The posterior is a GIG. Therefore, the posterior and prior are generally conjugated.
+	Let us see another kind of prior. What if $\lambda\sim Ig(\tau, \frac{\beta}{2})$ (Inverse Gamma)?
+	$$p(\lambda|x) = \frac{1}{\sqrt{2\pi}}\lambda^{-1/2}\exp\left(-\frac{x^2}{2\lambda}\right) \lambda^{-(\tau+1)}\exp\left(-\frac{\beta}{2\lambda}\right)\Rightarrow \text{Inverse Gamma}$$
+	
+	\subsection{Scale Mixture Distribution}
+		\subsubsection{Scale Mixture of Normals}
+		\begin{align*}
+			& \int_{0}^{\infty}N\left(x|\mu,\frac{\sigma^2}{r}\right)Ga\left(r|\frac{v}{2},\frac{v}{2}\right)\d r\\
+			= & \int_{0}^{\infty} \frac{r^{1/2}}{\sqrt{2\pi}\sigma}\exp\left(-\frac{x-\mu}{2\sigma^2}r\right)\frac{\left(\frac{v}{2}\right)^{v/2}}{\Gamma\left(\frac{v}{2}\right)}r^{v/2-1}\exp\left(-\frac{rv}{2}\right)\d r\\
+			\propto & \int_{0}^{\infty} r^{\frac{v+1}{2}-1} \exp\left(-\frac{r}{2}\left(\frac{(x-\mu)^2}{\sigma^2}+v\right)\right)\d r\\
+			\Rightarrow & \text{Student-t Distribution}
+		\end{align*}
+		
+		
+		
+		\subsubsection{Laplace Distribution}
+		The Laplace distribution can also be written as a mixture of Gaussian distribution and Exponential Distribution.
+		\begin{align*}
+			f(x) & = \frac{1}{2\sigma}\exp\left(-\frac{|x-\mu|}{\sigma}\right)\\
+			& = \int_{0}^{\infty} \frac{1}{\sqrt{2\pi r}} \exp\left(-\frac{1}{2r}(x-\mu)^2\right)\frac{1}{2\sigma^2}\exp\left|-\frac{r}{2\sigma^2}\right|\d r\\
+			& = \frac{1}{\sqrt{2\pi}}\int_{0}^{\infty}r^{-1/2}\exp\left(-\frac{1}{2}\left(\frac{(x-\mu)^2}{r} + \frac{r}{\sigma^2}\right)\right)\d r\\
+			& = \frac{2K_{\frac{1}{2}}\left(\frac{|x-\mu|}{\sigma}\right)}{\left(\frac{1}{\left|\sigma(x-\mu)\right|}\right)^{1/2}}
+		\end{align*}
+		where $K_{\frac{1}{2}}(\mu) = \sqrt{\frac{\mu}{2\pi}}\exp(-\mu)$
+		
+		
+		\subsubsection{Negative Binomial Distribution}
+		The negative binomial distribution can be regarded as a gamma poisson mixture.
+		\begin{align*}
+			f_X(x) & = \int_{0}^{\infty}f_{Po(\lambda)}(k)f_{Ga}\left(r, \frac{1-p}{p}\right)\d \lambda\\
+			& = \int_{0}^{\infty}\frac{\lambda^k}{k!}e^{-\lambda}\frac{\lambda^{r-1}\exp\left(-\frac{1-p}{p}\lambda\right)}{\Gamma(r)\left(\frac{p}{1-p}\right)^r}\\
+			& = \frac{p^{-r}(1-p)^r}{k!\Gamma(r)}\int_{0}^{\infty}\lambda^{r+k-1}\exp\left(-\frac{\lambda}{p}\right)\d \lambda\\
+			& \propto C \Gamma(r+k)p^{r+k}\\
+			& =\frac{\Gamma(r+k)}{k!\Gamma(r)}p^k(1-p)^r			
+		\end{align*}
+
+\section{Homework}
+	\begin{enumerate}[(1)]
+		\item Given the approximation of t distribution when $v=1$ and $v\to \infty$.
+		\item Compute the Gamma-Poisson Mixture: $ \sum\limits_{k=0}^{\infty}Ga(x|k,\beta)Po(k|\lambda)$
+	\end{enumerate}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

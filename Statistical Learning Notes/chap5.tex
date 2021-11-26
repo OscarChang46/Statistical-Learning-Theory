@@ -1,0 +1,410 @@
+\chapter{Multivariate Distribution}
+
+\section{Bivariate Distribution}
+	\begin{definition}[Joint Mass Function]
+		Given a pair of discrete r.v. $X$ and $Y$. Define the joint mass function by $$f_{(X,Y)}(x,y) = P(X=x,Y=y)$$
+	\end{definition}
+	
+	\begin{definition}[Probability Density Function]
+		In the continuous case, we call a function $f(x,y)$ a p.d.f for $(X,Y)$ if:
+		\begin{enumerate}[(1)]
+			\item $f(x,y)\geq 0$ for all $x,y$
+			\item $\int_{-\infty}^\infty\int_{-\infty}^{\infty}\d x\d y =1$
+			\item For any set $A\subset \R \times \R $, $P((x, y)\in A) = \int\int_A f(x, y) \d x\d y$. The cdf $F_{XY}(x,y) = P(X\leq x, Y\leq y)$
+		\end{enumerate}
+	\end{definition}
+	
+	\begin{definition}[Marginal Distribution]
+		If $(X,Y)$, $f(x,y)$, $f_{X}(x) = P(X=x) = \sum\limits_yP(X=x, Y=y)=\sum\limits_y f(x,y)$. For continuous distribution, $f_X(x) = P(X=x)=\int_y f(x,y)\d y$
+	\end{definition}
+	
+	\begin{definition}[Indepedent R.V.]
+		$X, Y$ are independent if for every $A$ and $B$
+		$$P(X\in A, Y\in B) = P(X\in A)\cdot P(Y\in B)$$.
+		We denote that $X \independ Y$.
+	\end{definition}
+
+	\begin{definition}[Conditional Distribution]
+		$f_{X|Y}(x|y)=P(X=x|Y=y) = \frac{P(X=x, Y=y)}{P(Y=y)}=\frac{F_{XY}(x, y)}{F_Y(y)} \quad f_Y(y)>0$
+	\end{definition}
+	
+\section{Multinomial Distribution}
+	Let $X = (X_1,..., X_n)$ where $X_i$ are r.v. We call $X$ a random vector and $f(x_1,... ,x_n)$ as p.d.f (p.m.f). Similarly, we can also deduce the marginal distribution and independence:
+	\begin{itemize}
+		\item Marginal distribution: $f(x_i) = \sum\limits_{x_1,...,x_{i-1},x_{i+1},...,x_n}f(x_1,...,x_{i-1},x_{i+1},...,x_n)$
+		\item Independence: $f(x_1, ..., x_n) = \prod\limits_{i=1}^{n}f_{x_i}(x_i)$
+	\end{itemize}
+	\begin{definition}[iid]
+		If $X_1, ..., X_n$ are independent and each has the same marginal distribution with c.d.f, we say that $X_1, ...,X_n$ are \textbf{i.i.d} or \textbf{independent and identically distributed}, denoted as $X_i \sim F(\theta)$.
+	\end{definition}
+
+	\begin{definition}[exchangeable]
+		Let $f(x_1, ..., x_n)$ be the joint density of $X_1, ..., X_n$. If $f(x_1 ,..., x_n) = f(x_{\pi_1},...,x_{\pi_n})$ and $\{x_{\pi_1},...,x_{\pi_n}\}$ is permutation of $\{1,...,n\}$, then $X_1, ...,X_n$ are \textbf{exchangeable}.
+	\end{definition}
+
+	\paragraph{Ex 1.}
+	Let $P(X_1=x_1, ...,X_{10}=x_{10}|\theta) = \prod\limits_{i=1}^{10}\theta^{x_i}(1-\theta)^{1-x_i}$. If $\theta \sim f(\theta)$,
+		\begin{align*}
+			f(x_1, ..., x_{10})& = \int f(x_1,..., x_{10}|\theta)f(\theta)\d \theta\\
+			& = \int_{0}^{1}\theta^{\sum x_i}(1-\theta)^{1-\sum x_i}f(\theta)\d \theta
+		\end{align*}
+	This indicate that if $f(\textbf{X})$ is exchangeable, then $\{X_i\}$ might be exchangeable. The following theorem provide a principle to judge that.
+	
+	\begin{theorem}[De Finetti]
+		Let $X_i\subset X$ for all $i\in\{1,2,...\}$. Suppose that for any $n$, $X_1,..., X_n$ are exchangeable:
+		$$f(x_1,...,x_n) = f(x_{\pi_1},...,x_{\pi_n})$$
+		for all parameters $\pi_i$ of $\{1,...,n\}$. Then we have:
+		$$f(x_1,...,x_n) = \int\left[\sum_{i=1}^{n}f(x_i|\theta)\right]p(\theta)\d \theta$$
+		$p(\theta)$ are parameter $\theta$, some prior distribution $p(\theta)$ on $\theta$ and some sample model $p(x|\theta)$.
+	\end{theorem}
+	Inversely, we have another conclusion.
+	\begin{theorem}
+		If $\theta \sim P(\theta)$ and $X_1,...,X_n$ are conditionally i.i.d given $\theta$, then marginally $X_1,...,X_n$ are exchangeable (LDA).
+	\end{theorem}
+	\begin{proof}
+		\begin{align*}
+			f(x_1,..,x_n) & = \int f(x_1, ..., x_n|\theta)P(\theta)\d \theta\\
+			& = \int \prod\limits_{i=1}^{n}f(x_i|\theta)P(\theta)\d\theta = f(x_{\pi_1},...,x_{\pi_n})
+		\end{align*}
+	\end{proof}	
+
+	\section{Transformation}
+		\subsection{One to One Map}
+	\begin{theorem}[Law of transformation]
+		Let $X\sim \text{pdf }f_X/\text{cdf }F_X$ and $Y=g(X)$ be a function of $X$.
+		In the discrete case, the pmf of $Y$
+		$$f_Y(y) = P(Y\leq y) = P(g(X)\leq y) = P(x\in g^{-1}(y))$$
+		
+		In continuous case, we have a similar conclusion.
+		\begin{enumerate}[(1)]
+			\item For each $y$, find set $A_y = \{x: g(x)\leq y\}$
+			\item Find cdf
+				\begin{align*}
+					F_Y(y) & = P(Y\leq y) = P(g(x)\leq y)\\
+					& = \int_{A_y}f_X(x)\d x  
+				\end{align*}
+			\item $f_Y(y) = F_Y'(y)$
+		\end{enumerate}
+	\end{theorem}
+	
+	\paragraph{Ex 2.}
+	Suppose $P(X=-1) = P(X=1) = \frac{1}{4}$ and $P(X=0) = \frac{1}{2}$. Let $Y = X^2$, we have 
+	$$P(Y = 0) = P(X=0) = \frac{1}{2}$$
+	$$P(Y=1) = P(X = 1)+ P(X=-1) = \frac{1}{2}$$
+	
+	\paragraph{Ex 3.}Let $f_X(x) = e^{-x}$ for $x>0$, $Y = g(X) =\log X$.
+	\begin{align*}
+		& F_X(x) = \int_{0}^{\infty}f_X(u)\d u = 1-e^{-x}\\
+		& A_y = \{x:x\leq e^y\}\\
+		& F_Y(y) = P(Y\leq y) = P(\log x\leq y)=P(X\leq e^y) = F_X(e^y) = 1-e^{-e^y}\\
+		& f_Y(y) = e^y\cdot e^{-e^y}
+	\end{align*}
+	
+	\paragraph{Ex 4.} Let $X\sim U(-1, 3)$ and $Y+X^2$.
+	\begin{equation}
+		\left\{
+		\begin{array}{ll}
+			\frac{1}{4} & x\in (-1,3)\\
+			0 & \text{otherwise}
+		\end{array}
+		\right.
+	\end{equation}
+	Therefore, $Y$ can only take values in $\left[0,9\right)$. Consider (1) $0\leq y\leq 1$; (2) $1\leq y < 9$.
+	For case (1), $A_y = \left[-\sqrt{y},\sqrt{y}\right]$
+	$$F_y = \int_{A_y}F_X(x)\d x = \int_{-\sqrt{y}}^{\sqrt{y}} F_X(x)\d x = \frac{1}{2}\sqrt{y}$$
+	For case (2), $A_y = \left[-1, \sqrt{y}\right]$
+	$$F_y = \int_{A_y}\frac{1}{4}\d x = \frac{1}{4}(1+\sqrt{y})$$
+	In conclusion,
+	$$
+	\left\{
+		\begin{array}{ll}
+			\frac{1}{4\sqrt{y}} & 0<y<1\\
+			\frac{1}{8\sqrt{y}} & 1\leq y<9\\
+			0 & \text{otherwise}
+		\end{array}
+	\right.
+	$$
+	
+	\subsection{Multivariate Mapping}
+	\begin{theorem}[Law of Transformation]
+		Given a transformation $Z = g(X, Y)$, the pdf of $Z$ can be computed by the following method.
+		\begin{enumerate}[Step (1)]
+			\item For each $z$, find $A_z = \left\{(x,y):g(x,y)\leq z\right\}$
+			\item Find CDF $F_Z(z) = P(Z\leq z) = \int\int_{Z_z}f_{XY}(x,y)\d x\d y$
+			\item $f_Z(z) = F_Z'(z)$
+		\end{enumerate}
+	\end{theorem}
+
+	\paragraph{Ex 5.}
+	Let $X_1, X_2 \iidsim U(0,1)$ and $Y = X_1 + X_2$. The joint pdf is given as 
+	$$f_{X_1,X_2}(x_1, x_2) = \left\{
+	\begin{array}{ll}
+		1 & 0<x_1<1, 0<x_2<1\\
+		0 & \text{otherwise}
+	\end{array}
+	\right.
+	$$
+	The transformation $g$ is defined as the sum of $X_1$ and $X_2$ which is $g_{X_1X_2}(x_1,x_2) = x_1 + x_2$.
+	Then we can compute the CDF and PDF of $g$.
+	\begin{align*}
+		F_Y(y) &= P(\{x_1,x_2\}:x_1+x_2\leq y)\\
+		&= \int\int_{A_Y}f(x_1,x_2)\d x_1 \d x_2
+	\end{align*}
+	$$=\left\{
+	\begin{array}{ll}
+		0 & y<0\\
+		\frac{1}{2}y^2 & 0<y<1\\
+		1-\frac{(2-y)^2}{2} & 1\leq y< 2\\
+		1 & y>2
+	\end{array}
+	\right.$$
+
+	$$f_Y(y) = \left\{
+	\begin{array}{ll}
+		y & 0\leq y< 1\\
+		2-y & 1\leq y < 2\\
+		0 & \text{otherwise}
+	\end{array}
+	\right.
+	$$
+
+
+	\begin{theorem}
+		Let $X$ have a CDF $F_X(x)$ and $Y=g(x)$ and let $\X = \{x:f_X(x)>0\}$ and $\Y = \{y:y=g(x) \text{ for some } x\in \X\}$.
+		\begin{enumerate}[(1)]
+			\item If $g$ is a strictly increasing function on $\X$,
+			$$F_Y(y) = F_X(g^{-1}(y)) \text{ for }y\in \Y$$
+			\item If $g$ is a strictly decreasing function on $\X$ and $X$ is a continuous r.v.
+			$$F_Y(y) = 1-F_X(g^{-1}(y)) = \int_{A_Y}\d(F_X(x)) \text{ for }y\in \Y$$
+		\end{enumerate}
+	\end{theorem}
+	
+	\begin{proof}
+		If decreasing: $\{x\in \X, g(x)\leq y\} = \{x\in \X, g^{-1}(g(x))\geq g^{-1}(y)\}$ 
+		\begin{align*}
+			F_Y(y) & = \{x\in\X, x\geq g^{-1}(y)\}\\
+			       & = \int_{\{x\in \X, x\leq g^{-1}(y)\}} f_X(x)\d x\\
+			       & = \int_{g^{-1}(y)}^{\infty}f_X(x)\d x = 1-F_X(g^{-1}(y))
+		\end{align*}
+	\end{proof}
+	
+	\begin{theorem}
+		Let $X\sim f_X(x) \text{ and } Y=g(X)$. The continuous $g$ is a strictly monotonic function. $\X = \{x:f_X(x)>0\}$ and $\Y=\{y: y=g(x) \text{ for some } x\in\X\}$. Then
+		$$f_Y(y) = \left\{
+		\begin{array}{ll}
+			f_X(g^{-1}(y)) \frac{\d}{\d y}g^{-1}(y) & \text{increasing}\\
+			-f_X(g^{-1}(y)) \frac{\d}{\d y}g^{-1}(y) & \text{decreasing}
+		\end{array}
+		\right.$$
+	\end{theorem}
+
+	Now, we have another problem. Suppose we have a continuous distribution $F_X$. How to sample $x$ from $F_X$. We have $\nu \sim U(0,1)$.
+	\begin{theorem}[Probability Integral Transform]
+		Let $X$ has continuous cdf $F_X(x)$ and $Y = F_X(x)$. Then $Y$ is uniformly distributed on $U(0,1)$, which is $P(Y\leq y)=y$ $0<y<1$.
+	\end{theorem}
+	\begin{proof}
+		\begin{align*}
+			P(Y\leq y) &= P(F_X(x0\leq y))\\
+					   &= P(F_X^{-1}(F(x))\leq F^{-1}(y))\\
+					   &= P(X\leq F^{-1}(y))\\
+					   &= F_X(F_X^{-1}(y)) = y 
+		\end{align*}
+	\end{proof}
+	\subsection{Jaccobian}
+	\begin{definition}[Jaccobian]
+		Let $X$ be an $m\times 1$ random vector having a density function $f(x)$, which is positive on a set $\X \subset \R^m$. Suppose the transformation $X = \textbf{Y}(X)=\left(Y_1(X),...,Y_n(X)\right)^T$ is $1-1$ of some $y$, where $\Y$ denies the image of $X$ under $y$, so that the inverse transformation $X= \textbf{X}(Y)$ exists for $Y\in\X$. Assuming that the partial derivative $\partial x_i/\partial y_j \text{  }(i,j=1,2,...,m)$ and continuous on $\Y$. It is well known that the density function of random vector $Y=\textbf{Y}(X)$ is 
+		$$f_Y(y) = f_X(X(y))|J(x\to y)| \quad y\in \Y$$
+		where $J(x\to y)$ is the \textbf{Jaccobian} of transformation.
+		$$
+		J(x\to y) = \det \left(
+		\begin{matrix}
+			\frac{\partial x_1}{\partial y_1} & \cdots & \frac{\partial x_1}{\partial y_n}\\
+			\vdots & & \vdots\\
+			\frac{\partial x_n}{\partial y_1} & \cdots & \frac{\partial x_n}{\partial y_n}
+		\end{matrix}
+		\right)
+		$$
+	\end{definition}
+
+	\begin{definition}[Exterior Product]
+		$$\d x_i \cdot \d x_j = -\d x_j \cdot \d x_i$$
+	\end{definition}
+
+	\begin{definition}[Wedge Product]
+		$$\d x_i \wedge \d x_j = -\d x_j \wedge \d x_i$$
+	\end{definition}
+
+	
+	
+	\begin{theorem}
+		If $\d y=(\d y_1,...,\d y_m)^T$ is an $m\times 1$ vector of differentials and if $\d x = (\d x_1, ..., \d x_m)^T=B\cdot \d y$, where $B$ is an $m\times m$ nonsingular matrix, then $\mathop{\wedge}\limits_{i=1}^m \d x_i = \det(B)\cdot \mathop{\wedge}\limits_{i=1}^m \d y_i$
+	\end{theorem}
+
+	\begin{proof}
+		$$
+		\left(
+			\begin{array}{c}
+				\d x_1\\
+				\d x_2
+			\end{array}
+		\right)
+		=
+		\left(
+			\begin{array}{cc}
+				B_{11} & B_{12}\\
+				B_{21}&B_{22}		
+			\end{array}
+		\right)\cdot
+		\left(
+			\begin{array}{c}
+				\d y_1\\
+				\d y_2
+			\end{array}
+		\right)
+		=
+		\left(
+			\begin{array}{c}
+				B_{11} \d y_1 + B_{12} \d y_2\\
+				B_{21}\d y_1 + B_{22} \d y_2
+			\end{array}
+		\right)
+		$$
+		\begin{align*}
+			d x_1 \wedge \d x_2 & = (B_{11}\d y_1 + B_{12}\d y_2)(B_{21}\d y_1 + B_{22}\d y_2)\\
+			&=(B_{11}\cdot B_{12}-B_{12}\cdot B_{21})\d y_1 \wedge \d y_2
+		\end{align*}
+	
+	$$ (\dots )\d x = (\dots)B\d y\Leftarrow
+	\left(
+		\begin{array}{cc}
+			B_{11} - \vec{b_1}b_{m\times m}^{-1}\vec{a_1} & 0\\
+			\vec{a_1} & b_{m\times m}
+		\end{array}
+	\right)
+	= 
+	\left(
+		\begin{array}{cc}
+			I_{m\times m} & -\vec{b_1}b^{-1}_{m\times m}\\
+			0&1
+		\end{array}
+	\right)
+	\left(
+		\begin{array}{cc}
+			B_{11} & \vec{b_1}\\
+			\vec{a_1} & b_{m\times m}
+		\end{array}
+	\right)
+	$$
+	\end{proof}
+
+	\paragraph{Ex 6. Carton} Compute the Jaccobian of projection from rectangular coordinates $x_1, \dots ,x_m$ to polar coordinate $r , \theta_1,\dots,\theta_{m-1}$, where 
+	\begin{align*}
+		x_1 &= r\sin \theta_1 \cdots\sin \theta_{m-1}\\
+		x_2 &=r\sin\theta_1 \cdots\sin \theta_{m-2}\cos \theta_{m-1}\\
+		x_3 &=r\sin\theta_1\cdots\cos \theta_{m-2}\\
+		\vdots\\
+		x_{m-1} &= r\sin\theta_1\cos\theta_2\\
+		x_m &=r\cos\theta_1 \quad(r>0,0<\theta_i\leq \pi (i=1,\cdots,m-2), 0<\theta_{m-1}\leq 2\pi)
+	\end{align*}
+	$\Rightarrow J(\vec{x}\to r\theta_1\cdots\theta_{m-1})=r^{m-1}\sin^{m-2}\theta_1 \sin^{m-3}\theta_2 \cdots \sin\theta_{m-1}$
+	
+	\begin{proof}
+		\begin{align*}
+			x_1^2 &= r^2\sin^2\theta_1\cdots \sin^2\theta_{m-1}\\
+			x_2^2 &=r^2\sin^2\theta_1\cdots \sin^2\theta_{m-2}\cos^2\theta_{m-1}\\
+			\vdots\\
+			x_m^2 &= r^2\cos^2\theta_1
+		\end{align*}
+	Sum up these terms, we get
+	$$\sum_{i=1}^{m}x_i^2 = r^r$$
+	For derivatives,
+	\begin{align*}
+		2x_1\d x_1 &= 2r^2\sin^2\theta_1 \cdots \sin^2\theta_{m-2}\sin\theta_{m-1}\cos\theta_m \d \theta_{m-1}\\
+			&+ \text{terms including } \d r,\d\theta_1,\dots\d\theta_{m-1}\\
+		2x_1\d x_1 + 2x_2\d x_2 &= 2r^2\sin^2\theta_1 \cdots \sin\theta_{m-2}\cos\theta_{m-2}\d \theta_{m-2}\\
+			& + \text{terms including other }\d (\cdot)\\
+			\vdots\\
+		\dots& \Rightarrow \sum_{i=1}^{m}2x_i\d x_i = 2r\d r\\
+	\end{align*} 
+	Take wedge from both sides,
+	$$2^m \prod_{i=1}^{m}x_i \mathop{\wedge}\limits_{i=1}^{m}\d x_i = 2^m r^{2m-1}\sin^{2m-3}\theta_1\sin^{2m-5}\theta_2\dots\mathop{\wedge}\limits_{i=1}^{m}\d\theta_i\wedge\d r$$
+	\end{proof}
+	
+	For any matrix $X = (x_{ij})$, we have some basic law of differential.
+	\begin{theorem}
+		For any matrix $X = (x_{ij}), X\in\R^{n\times m}$, 
+		\begin{enumerate}
+			\item $\d X = (\d x_{ij})$
+			\item $\d(XY) = X\d Y+ Y\d X$
+			\item $(\d X) = \mathop{\wedge}_{i=1}^{m}\mathop{\wedge}_{j=1}^{n}\d x_{ij}$
+			\item If $X$ is a symmetric $m\times m$ matrix, the symbol 
+			$$(\d X) = \mathop{\wedge}_{1\leq i\leq j\leq m}\d X_{ij}$$
+			\item If $X$ is a anti-symmetric matrix, the symbol
+			$$(\d X) = \mathop{\wedge}_{1\leq i\leq j\leq m}\d X_{ij}$$
+			\item If $X$ is upper-triangluar matrix, the symbol
+			$$(\d X) = \mathop{\wedge}_{1\leq i\leq j\leq m}\d X_{ij}$$
+		\end{enumerate}
+	\end{theorem} 
+	
+	
+	\begin{theorem}
+		$X$ and $Y$ are two $n\times m$ matrixes. Given $X = BYC$, from which $B^{n\times n}$ and $C^{m\times m}$ are non-singular. We have
+		\begin{align*}
+			(\d X) & = (\det B)^m(\det C)^n (\d Y)\\
+			J(X\to Y) & = (\det B)^m(\det C)^n
+		\end{align*}
+	\end{theorem}
+	\begin{proof}
+		\footnote{$vec(\cdot)$ means to stretch a matrix to a vector row by row}
+		\begin{align*}
+			vec(X) &= vec(BYC)\\
+			& = (C^T\otimes B ) vec(Y)	\text{}	\\
+			(\d X) & = \det(C^T\otimes B)(\d Y) \\
+			& = (\det C)^n(\det B)^m (\d Y)	
+		\end{align*}
+	where $\otimes $ is Kronecker product.\footnote{Kronecker Product: Given two matrics $A^{p\times q}$ and $B^{m \times n }$, the Kronecker product is definded as: $A\otimes B = (a_{ij}B)^{pm, qn}$}
+	
+	 By SVD decomposition, we can denote $C$ as $\Sigma$ and $B$ as $\Pi$.
+	 $$\Rightarrow \Sigma^n\Pi^m(\d Y)$$
+	\end{proof}
+	
+	\begin{theorem}
+		If $X = BYB^T$, where $X$ and $Y$ are two $m\times m$ symmetric matrixes, and $B$ is a non-singular matrix, then
+		\begin{align*}
+			(\d X) &= (\det B)^{m+1} (\d Y)\\
+			J(X\to Y) &= (\det B)^{m+1}
+		\end{align*}
+	\end{theorem}
+	\begin{proof}
+		$$(\d X) = (B\d Y B^T) = \rho(B)(\d Y)$$
+		where $\rho(B)$ is a polynomial of elements of B.
+		
+		For $\rho(\cdot)$, we want to prove $\rho(B_1B_2) = \rho(B_1)\rho(B_2)$
+		\begin{align*}
+			(\d X) & = (B_1B_2\d YB_2^TB_2) \\
+			&= \rho(B_1)(B_2\d YB_2^T)\\
+			& = \rho(B_1)\rho(B_2)\d Y
+		\end{align*}
+	So, $\rho(B) = (\det B)^k$ for some $k$.
+	\end{proof}
+	
+	\begin{definition}
+		
+	\end{definition}
+\section{Homework}
+	\begin{enumerate}
+		\item Compute the Laplace transformation of Gamma, Negative Nomial and Poisson Distribution.
+		
+		\item Consider that 
+		\begin{itemize}
+			\item $\omega_1 = \omega \alpha$, $\omega_2(1-\alpha)$
+			\item $u_1 = u-\beta \sigma \sqrt{\frac{\omega_2}{\omega_1}}$, $u_2 = u_1+\beta \sigma \sqrt{\frac{\omega_1}{\omega_2}}$
+			\item $\sigma_1^2 = \gamma(1-\beta^2)\sigma^2\frac{\omega}{\omega_1}$, $\sigma^2_2 = (1-\gamma)(1-\beta^2)\sigma\frac{\omega}{\omega_2}$
+		\end{itemize}
+	where $\alpha, \beta, \gamma \in (0, 1)$.
+	
+	Compute the Jacobian from $(\omega_1, \omega_2, u_1, u_2, \sigma_1^2, \sigma_2^2)$ to $(\omega, u, \sigma^2, \alpha, \beta, \gamma)$
+	
+	Hint: you can use the property $$\sum_{i = 1}^{k} \omega_i  N(\mu_i, \sigma_i^2) = \sum_{j=1}^{k+1}\omega_i N(\mu_j, \sigma_j^2)$$
+	This equation means $k$ numbers of gaussian can be seperated into $k+1$ sub gaussian.
+	\end{enumerate}
