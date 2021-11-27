@@ -473,7 +473,19 @@
 	\end{theorem}
 	This theorem tells us that the parameter of remaining part of $\theta_i$ are independent to the other part of $\theta$ which is only normalized. The conditional distribution only depends on $n-s$. 
 
-
+\section{Dirichlet Distribution}
+	After introducing the multinomial distrbution, we know that it can be used to do multi class classification. The problem now is how to set the prior distribution of multinomial distribution? The Dirichlet distribution is the general form of Beta distribution. It is the conjugate prior of the categorical distribution and multinomial distribution.  
+	
+	\begin{definition}[Dirichlet Distribution]
+		A continuous random vector $\textbf{x} = (x_1,...,x_k)$ has a Dirichlet distribution of dimension $k$, with parameters $\alpha = (\alpha_1,...,\alpha_{k+1}) \quad (\alpha_i>0, i = 1,...,k+1)$ if its p.d.f $\Dir(\textbf{x}|\alpha)$
+		
+		\begin{equation}
+			\Dir(\textbf{x}|\alpha) = \frac{\Gamma(\sum_{i =1}^{k+1}\alpha_i)}{\prod_{i=1}^{k+1}\Gamma(\alpha_i)}\prod_{i=1}^{k}x_i^{\alpha_i - 1}\left(1-\sum_{i = 1}^{k}x_i\right)^{\alpha_{k+1}-1}
+		\end{equation}
+	\end{definition}
+	The mean and covariance of Dirichlet distribution are given by
+	$$\E(X_i) = \frac{\alpha_i}{\sum_{j = 1}^{k+1}\alpha_j}$$
+	$$\Var(X_i) = \frac{\E(X_i) - (1-\E(X_i))}{1+\sum_{j = 1}^{k+1}\alpha_j}$$
 \section{Homework}
 	\begin{enumerate}
 		\item Compute the Laplace transformation of Gamma, Negative Nomial and Poisson Distribution.

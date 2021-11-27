@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  27 NOV 2021 01:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  27 NOV 2021 02:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1041,24 +1041,24 @@ File: l3backend-pdftex.def 2021-08-04 L3 backend support: PDF output (pdfTeX)
 (./chap4.aux) (./chap5.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 102.
-LaTeX Font Info:    ... okay on input line 102.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 103.
+LaTeX Font Info:    ... okay on input line 103.
 
 
 ******************************************************
@@ -1110,8 +1110,8 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'thesis.bbl' found.
 
 (./thesis.bbl)
-Package biblatex Info: Reference section=0 on input line 102.
-Package biblatex Info: Reference segment=0 on input line 102.
+Package biblatex Info: Reference section=0 on input line 103.
+Package biblatex Info: Reference segment=0 on input line 103.
 
 (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -1169,7 +1169,7 @@ e
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 102.
+Package hyperref Info: Link coloring OFF on input line 103.
 (/usr/local/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
 
@@ -1184,10 +1184,10 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 Redoing nameref's sectioning
 Redoing nameref's label
-LaTeX Info: Redefining \nameref on input line 102.
-LaTeX Info: Redefining \ref on input line 102.
-LaTeX Info: Redefining \pageref on input line 102.
-LaTeX Info: Redefining \nameref on input line 102.
+LaTeX Info: Redefining \nameref on input line 103.
+LaTeX Info: Redefining \ref on input line 103.
+LaTeX Info: Redefining \pageref on input line 103.
+LaTeX Info: Redefining \nameref on input line 103.
 (./thesis.out) (./thesis.out)
 \@outlinefile=\write6
 \openout6 = `thesis.out'.
@@ -1199,7 +1199,7 @@ Non-PDF special ignored!
 {/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 
 Class ucbthesis Warning: The final submitted version should not have an approva
-l page on input line 137.
+l page on input line 138.
 
 [2] [3]
 \openout2 = `abstract.aux'.
@@ -1260,7 +1260,7 @@ l.48 ...frac{(y_i - x_i^Ta)^2}{2\sigma^2}\right)$$
 s been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.180 	\include{chap1}
+l.181 	\include{chap1}
                        [2]
 \openout2 = `chap2.aux'.
 
@@ -1353,9 +1353,9 @@ dis-crete ran-dom vec-tor $[] \U/MnSymbolD/m/n/12 ^^@ \OMX/MnSymbolE/m/n/12 ˆ\O
 ML/cmm/m/it/12 x[]; :::; x[]; x[]\OMX/MnSymbolE/m/n/12 $
  []
 
-[34]) [35]
+[34] [35]) [36]
 
-LaTeX Warning: Empty bibliography on input line 186.
+LaTeX Warning: Empty bibliography on input line 187.
 
 \tf@toc=\write7
 \openout7 = `thesis.toc'.
@@ -1369,16 +1369,16 @@ LaTeX Warning: Empty bibliography on input line 186.
 (./thesis.aux (./abstract.aux) (./chap1.aux) (./chap2.aux) (./chap3.aux)
 (./chap4.aux) (./chap5.aux))
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: FB7CC187001320AC550E6CB9CA6C9126;3736.
+(rerunfilecheck)             Checksum: 198D04F80675829B7A14B1903F64F006;3904.
 Package logreq Info: Writing requests to 'thesis.run.xml'.
 \openout1 = `thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24128 strings out of 478542
- 380326 string characters out of 5850387
- 1147591 words of memory out of 5000000
- 41444 multiletter control sequences out of 15000+600000
+ 24134 strings out of 478542
+ 380387 string characters out of 5850387
+ 1147599 words of memory out of 5000000
+ 41446 multiletter control sequences out of 15000+600000
  432106 words of font info for 127 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  72i,17n,80p,1151b,759s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1410,10 +1410,10 @@ pe1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts
 /type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
 ublic/cm-super/sfrm1200.pfb>
-Output written on thesis.pdf (44 pages, 458163 bytes).
+Output written on thesis.pdf (45 pages, 460013 bytes).
 PDF statistics:
- 729 PDF objects out of 1000 (max. 8388607)
- 620 compressed objects within 7 object streams
- 258 named destinations out of 1000 (max. 500000)
- 209 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 741 PDF objects out of 1000 (max. 8388607)
+ 631 compressed objects within 7 object streams
+ 262 named destinations out of 1000 (max. 500000)
+ 217 words of extra memory for PDF output out of 10000 (max. 10000000)
 
