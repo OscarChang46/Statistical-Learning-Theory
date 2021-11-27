@@ -425,9 +425,53 @@
 		\int xf_x(x)\d x & \text{if x is continuous random vector}
 	\end{array}
 	\right.$$
+	
+	and the covairance of $Z$ and $Y$ is defined as:
+	$$\Cov(Z, Y) = \E(ZY) - \E(Z)\cdot \E(Y) = \int (Z - \E(Z))(Y - \E(Y))\d F$$ 
 	\end{definition}
 
 
+	\begin{lemma}
+		If $\bar{a}$ is a vector and $\textbf{x}$ is a random vector with mean $\mu$ and covariance matrix $\Sigma$, we have 
+		\begin{enumerate}
+			\item $\E (\bar{a}^T\textbf{x}) = \bar{a}^T \mu$
+			\item $\Var(\bar{a}^T\textbf{x}) = \bar{a}\Sigma\bar{a}^T$
+		\end{enumerate} 
+	If $A$ is a matrix, we have 
+		\begin{enumerate}
+			\item $\E(Ax) = A\mu$
+			\item $\Cov(Ax) = A\Sigma A^T$
+		\end{enumerate}
+	\end{lemma}
+	
+	\paragraph{Ex 7. The Multinomial Distribution}
+	A discrete random vector $\bar{x} = (x_1,..., x_k,x_{k+1})$ has multivariate distribution of dimension $k$ with parameters $\theta = (\theta_1, \theta_2,...,\theta_k,\theta_{k+1} )^T$ and n. $(0\leq \theta_i\leq 1, \sum \theta_i<1, n=1,2,...)$. If its p.m.f is 
+	$$f_{nk}(\bar{x}|\theta,n) = \frac{n!}{\prod_{i=1}^{k}x_i!\left(
+		n - \sum_{i=1}^{k}x_i
+		\right)!}
+	\sum_{i=1}^{k}\theta_i^{x_i}\left(1 - \sum_{i=1}^{k}\theta_i\right)^{n - \sum_{i=1}^{k}x_i}
+	$$
+	The above form indicate that if we restrict the sum of each sub-element to $n$ and the sum of $\theta_i$ to 1, the probability mass function can be represented by the first $k$ components.
+	
+	
+	The mean vector and covariance matrix are:
+	$$\E(X_i) = n\theta_i$$
+	$$\Var(X_i) = n\theta_i (1-\theta_i)$$
+	$$\Cov(X_i X_j) = -n\theta_i \theta_j$$
+
+	
+	\begin{theorem}
+		The marginal distribution of $\textbf{x}^{(m)} = (x_1,...,x_m)$ where $m < k$ is the multimonial distribution with p.m.f
+		\begin{equation}
+			f_{n,m}(\textbf{x}^{(m)}|(\theta_1,\theta_2,...,\theta_m),n)
+		\end{equation}
+		 The conditional distribution of $\textbf{x}^{(m)}$ giving the remaining $x_i$ is also multinomial distribution with p.m.f
+		\begin{equation}
+			f_{n-s,m-1} \left(\textbf{x}^{(m)}|\left(\frac{\theta_1}{\sum_{j = 1}^{m}\theta_j}, \frac{\theta_2}{\sum_{j = 1}^{m}\theta_j},..., \frac{\theta_m}{\sum_{j = 1}^{m}\theta_j}\right),n-s\right)
+		\end{equation}
+		 where $s = \sum_{j = m+1}^{k}x_j$.
+	\end{theorem}
+	This theorem tells us that the parameter of remaining part of $\theta_i$ are independent to the other part of $\theta$ which is only normalized. The conditional distribution only depends on $n-s$. 
 
 
 \section{Homework}
@@ -446,4 +490,9 @@
 	
 	Hint: you can use the property $$\sum_{i = 1}^{k} \omega_i  N(\mu_i, \sigma_i^2) = \sum_{j=1}^{k+1}\omega_i N(\mu_j, \sigma_j^2)$$
 	This equation means $k$ numbers of gaussian can be seperated into $k+1$ sub gaussian.
+	
+	\item By using multinomial theorem, show the marginal distribution (5.2) and conditional distribution (5.3). 
+	The multinomial theorem is:
+	$$(p_1+p_2+\cdots +p_k)^n = \sum \frac{n!}{\prod_{i = 1}^{k}x_i!}\prod_{j = 1}^{k}p_j^{x_j}$$
+	where $\sum_{i = 1}^{k} x_i = n$
 	\end{enumerate}

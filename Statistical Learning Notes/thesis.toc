@@ -168,4 +168,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.4}Random Vector}{33}{section.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.5}Homework}{33}{section.5.5}%
+\contentsline {paragraph}{Ex 7. The Multinomial Distribution}{34}{section*.65}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}Homework}{35}{section.5.5}%

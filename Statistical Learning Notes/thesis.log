@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  26 NOV 2021 23:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  27 NOV 2021 01:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1346,7 +1346,14 @@ m/it/12 y \U/MnSymbolA/m/n/12
  [] \U/MnSymbolD/m/n/12 ^^@ [] []
  []
 
-[30] [31] [32] [33]) [34]
+[30] [31] [32] [33]
+Overfull \hbox (14.46617pt too wide) in paragraph at lines 448--449
+[]\OT1/cmr/bx/n/12 Ex 7. The Multi-no-mial Dis-tri-bu-tion[] \OT1/cmr/m/n/12 A 
+dis-crete ran-dom vec-tor $[] \U/MnSymbolD/m/n/12 ^^@ \OMX/MnSymbolE/m/n/12 à\O
+ML/cmm/m/it/12 x[]; :::; x[]; x[]\OMX/MnSymbolE/m/n/12 ç$
+ []
+
+[34]) [35]
 
 LaTeX Warning: Empty bibliography on input line 186.
 
@@ -1361,29 +1368,23 @@ LaTeX Warning: Empty bibliography on input line 186.
 
 (./thesis.aux (./abstract.aux) (./chap1.aux) (./chap2.aux) (./chap3.aux)
 (./chap4.aux) (./chap5.aux))
-
-Package rerunfilecheck Warning: File `thesis.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `thesis.out':
-(rerunfilecheck)             Before: C8F0C1988C74CD751D55B8049A27F3E6;3613
-(rerunfilecheck)             After:  FB7CC187001320AC550E6CB9CA6C9126;3736.
+Package rerunfilecheck Info: File `thesis.out' has not changed.
+(rerunfilecheck)             Checksum: FB7CC187001320AC550E6CB9CA6C9126;3736.
 Package logreq Info: Writing requests to 'thesis.run.xml'.
 \openout1 = `thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24114 strings out of 478542
- 380185 string characters out of 5850387
+ 24128 strings out of 478542
+ 380326 string characters out of 5850387
  1147591 words of memory out of 5000000
- 41441 multiletter control sequences out of 15000+600000
- 431388 words of font info for 125 fonts, out of 8000000 for 9000
+ 41444 multiletter control sequences out of 15000+600000
+ 432106 words of font info for 127 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  72i,17n,80p,1151b,759s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}{/
-usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/
-local/texlive/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/loca
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/
+usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}{/usr/
+local/texlive/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/usr/loca
 l/texlive/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/local/te
 xlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}{/usr/local/tex
 live/2021/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc}</usr/local/texlive
@@ -1409,10 +1410,10 @@ pe1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts
 /type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
 ublic/cm-super/sfrm1200.pfb>
-Output written on thesis.pdf (43 pages, 451324 bytes).
+Output written on thesis.pdf (44 pages, 458163 bytes).
 PDF statistics:
- 705 PDF objects out of 1000 (max. 8388607)
- 599 compressed objects within 6 object streams
- 247 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 729 PDF objects out of 1000 (max. 8388607)
+ 620 compressed objects within 7 object streams
+ 258 named destinations out of 1000 (max. 500000)
+ 209 words of extra memory for PDF output out of 10000 (max. 10000000)
 
