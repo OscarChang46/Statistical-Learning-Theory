@@ -390,14 +390,30 @@
 	
 	\begin{definition}[Random Vector]
 		$X = (x_1, ..., x_m)^T$. The mean of a random vector $X$ can be written as 
-		$$\mu = \left(
+		$$\bar{\mu} = \left(
 		\begin{array}{c}
 			\mu_1\\
 			\mu_2\\
 			\vdots\\
 			\mu_m
 		\end{array}
+		\right) = \left(
+		\begin{array}{c}
+			\E(x_1)\\
+			\E(x_2)\\
+			\vdots\\
+			\E(x_m)
+		\end{array}
 		\right)$$
+		
+		The covariance matrix can be defined as:
+		
+		$$\Cov(X) = \left(\begin{array}{cccc}
+			\Var(x_1) & \Cov(x_1, x_2) & \cdots & \Cov(x_1, x_m)\\
+			\vdots & \Var(x_2) & & \Cov(x_2, x_n)\\
+			\vdots & &\ddots&\vdots\\
+			\Cov(x_1, x_n) & \Cov(x_2,x_n)&\vdots & \Var(x_n) 
+		\end{array}\right)$$
 	\end{definition}
 
 
