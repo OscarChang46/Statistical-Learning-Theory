@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  27 NOV 2021 02:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  27 NOV 2021 03:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1353,7 +1353,15 @@ dis-crete ran-dom vec-tor $[] \U/MnSymbolD/m/n/12 ^^@ \OMX/MnSymbolE/m/n/12 ˆ\O
 ML/cmm/m/it/12 x[]; :::; x[]; x[]\OMX/MnSymbolE/m/n/12 $
  []
 
-[34] [35]) [36]
+[34]
+Overfull \hbox (1.46066pt too wide) in paragraph at lines 506--507
+[][]\OT1/cmr/bx/n/12 Theorem 20 \OT1/cmr/m/n/12 (Trans-for-ma-tion)\OT1/cmr/bx/
+n/12 . []\OT1/cmr/m/it/12 Given a ran-dom vec-tor $[] \U/MnSymbolD/m/n/12 ^^@ \
+OMX/MnSymbolE/m/n/12 ˆ\OML/cmm/m/it/12 x[]; :::; x[]\OMX/MnSymbolE/m/n/12 $ \O
+T1/cmr/m/it/12 fol-lows Dirich-
+ []
+
+[35]) [36]
 
 LaTeX Warning: Empty bibliography on input line 187.
 
@@ -1375,8 +1383,8 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 24134 strings out of 478542
- 380387 string characters out of 5850387
+ 24138 strings out of 478542
+ 380435 string characters out of 5850387
  1147599 words of memory out of 5000000
  41446 multiletter control sequences out of 15000+600000
  432106 words of font info for 127 fonts, out of 8000000 for 9000
@@ -1410,10 +1418,10 @@ pe1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
 e1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2021/texmf-dist/fonts
 /type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/p
 ublic/cm-super/sfrm1200.pfb>
-Output written on thesis.pdf (45 pages, 460013 bytes).
+Output written on thesis.pdf (45 pages, 462432 bytes).
 PDF statistics:
- 741 PDF objects out of 1000 (max. 8388607)
- 631 compressed objects within 7 object streams
- 262 named destinations out of 1000 (max. 500000)
+ 746 PDF objects out of 1000 (max. 8388607)
+ 636 compressed objects within 7 object streams
+ 266 named destinations out of 1000 (max. 500000)
  217 words of extra memory for PDF output out of 10000 (max. 10000000)
 
