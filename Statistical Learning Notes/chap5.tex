@@ -387,7 +387,9 @@
 		\end{align*}
 	So, $\rho(B) = (\det B)^k$ for some $k$.
 	\end{proof}
-	
+
+\section{Random Vector}
+
 	\begin{definition}[Random Vector]
 		$X = (x_1, ..., x_m)^T$. The mean of a random vector $X$ can be written as 
 		$$\bar{\mu} = \left(
@@ -414,6 +416,15 @@
 			\vdots & &\ddots&\vdots\\
 			\Cov(x_1, x_n) & \Cov(x_2,x_n)&\vdots & \Var(x_n) 
 		\end{array}\right)$$
+	
+	where the expectation of $x$ is defined as:
+	$$
+	\E(x) = \left\{
+	\begin{array}{cl}
+		\sum_{x}xp(X = x) & \text{if x is discrete random vector}\\
+		\int xf_x(x)\d x & \text{if x is continuous random vector}
+	\end{array}
+	\right.$$
 	\end{definition}
 
 

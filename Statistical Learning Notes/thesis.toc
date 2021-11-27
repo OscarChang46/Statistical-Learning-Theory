@@ -166,4 +166,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {paragraph}{Ex 6. Carton}{31}{section*.64}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Homework}{33}{section.5.4}%
+\contentsline {section}{\numberline {5.4}Random Vector}{33}{section.5.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}Homework}{33}{section.5.5}%
