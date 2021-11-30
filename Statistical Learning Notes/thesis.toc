@@ -174,8 +174,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.6}Multi Gaussian}{36}{section.5.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.7}Homework}{36}{section.5.7}%
+\contentsline {section}{\numberline {5.7}Homework}{37}{section.5.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\chapternumberline {6}Sufficient Statistics}{37}{chapter.6}%
+\contentsline {chapter}{\chapternumberline {6}Sufficient Statistics}{38}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Sufficient Statistics}{37}{section.6.1}%
+\contentsline {section}{\numberline {6.1}Sufficient Statistics}{38}{section.6.1}%

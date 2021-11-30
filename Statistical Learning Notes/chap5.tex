@@ -520,8 +520,88 @@
 		\begin{equation}
 			p(\textbf{x}) = \frac{1}{(2\pi)^{p/2}|\Sigma|^{1/2}}\exp\left(-\half (\textbf{x}-\mu)^T\Sigma^{-1}(\textbf{x}-\mu)\right)
 		\end{equation}
-	where $\E(X) = \mu$ and $\Cov(X) = \Sigma$
+	where $\E(X) = \mu$ and $\Cov(X) = \Sigma$.
 	\end{definition}
+	
+	\begin{theorem}
+		If $\textbf{x}\sim \N_p(\mu, \Sigma)$ and $X$ can be represented as a block matrix $\textbf{x} = \left(
+		\begin{array}{c}
+			\textbf{x}^{(1)}\\
+			\textbf{x}^{(2)}
+		\end{array}
+		\right)$ which $\textbf{x}^{(1)}\in \R^{p}$ and $\textbf{x}^{(2)}\in \R^{q-p}$. The mean and covariance matrix can be represented as $\mu = \left(
+		\begin{array}{c}
+			\mu^{(1)}\\
+			\mu^{(2)}
+		\end{array} 
+		\right)$ and $\Sigma = \left(
+		\begin{array}{cc}
+			\Sigma_{11} & \Sigma_{12}\\
+			\Sigma_{21} & \Sigma_{22}
+		\end{array}
+		\right)$. Besides, we also define $x_{2\cdot 1} = \textbf{x}^{(2)} - \Sigma_{21}\Sigma_{11}^{-1}\textbf{x}^{(1)}$. Therefore, we have the following conclusions.
+		\begin{enumerate}
+			\item $\textbf{x}^{(1)}\sim \N_q\left(\mu^{(1)}, \Sigma_{11}\right)$ and $\textbf{x}_{2\cdot1}\sim\N_{pq}\left(\mu_{21}, \Sigma_{22\cdot 1}\right)$\footnote{We name $\Sigma_{22\cdot 1} $ as \textbf{Shur Complement} which is defined as $\Sigma_{22} - \Sigma_{21}\Sigma_{11}^{-1}\Sigma_{12}$.}
+			\item $\textbf{x}^{(1)}\independ \textbf{x}_{2\cdot 1}$
+			\item $\textbf{x}_2|\textbf{x}_1\sim\N_{pq}\left(\mu^{(2)} + \Sigma_{21}\Sigma_{11}^{-1}\left(\textbf{x}^{(1)} - \mu^{(1)}\right), \Sigma_{22\cdot 1}\right)$
+		\end{enumerate}
+		
+		\begin{proof}
+			The main idea of proving the three properties is to use Jaccobian.
+			
+			\begin{equation*}
+				\left\{ 
+				\begin{array}{cl}
+					x_{2\cdot 1} & = x^{(2)} - \Sigma_{21}\Sigma_{11}^{-1}x^{(1)} = \left(-\Sigma_{21}\Sigma_{11}^{-1}, I\right) \left(
+					\begin{array}{c}
+						x^{(1)}\\
+						x^{(2)}
+					\end{array}
+					\right)\\
+					x^{(1)} & = x^{(1)}
+				\end{array}
+				\right.
+			\end{equation*}
+		
+		Now we create a Jaccobian of the transformation $(x^{(1)}, x^{(2)})\to (x^{(1)}, x_{2\cdot 1})$
+		
+		$$
+		z = \left(
+		\begin{array}{c}
+			x^{(1)}\\
+			x_{2\cdot 1}
+		\end{array}
+		\right) = \left(
+		\begin{array}{cc}
+			I & 0\\
+			-\Sigma_{21}\Sigma_{11}^{-1} & I
+		\end{array}
+		\right)\left(
+		\begin{array}{c}
+			x^{(1)}\\
+			x^{(2)}
+		\end{array}
+		\right)
+		$$
+		
+		The differential of $z$ is 
+		$$\d z = \det \left(
+		\begin{array}{cc}
+			I & 0\\
+			-\Sigma_{21}\Sigma_{11}^{-1} & I
+		\end{array}
+		\right) \d x$$
+		
+		By defining the matrix $\left(
+		\begin{array}{cc}
+			I & 0\\
+			-\Sigma_{21}\Sigma_{11}^{-1} & I
+		\end{array}
+		\right)$ as $B$, we have 
+		$$x - \mu = B^{-1}z$$
+		$$\Leftrightarrow$$
+		\end{proof}
+	\end{theorem}
 
 
 \section{Homework}
