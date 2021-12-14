@@ -7,12 +7,13 @@ A level-1 auxiliary file: chap2.aux
 A level-1 auxiliary file: chap3.aux
 A level-1 auxiliary file: chap4.aux
 A level-1 auxiliary file: chap5.aux
+A level-1 auxiliary file: chap6.aux
 I found no \citation commands---while reading file thesis.aux
 I found no \bibdata command---while reading file thesis.aux
 I found no \bibstyle command---while reading file thesis.aux
 You've used 0 entries,
             0 wiz_defined-function locations,
-            89 strings with 543 characters,
+            90 strings with 552 characters,
 and the built_in function-call counts, 0 in all, are:
 = -- 0
 > -- 0
