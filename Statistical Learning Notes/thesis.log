@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  16 DEC 2021 01:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2021.8.27)  18 DEC 2021 23:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1788,7 +1788,7 @@ Package logreq Info: Writing requests to 'thesis.run.xml'.
 Here is how much of TeX's memory you used:
  36614 strings out of 478542
  672489 string characters out of 5850387
- 1440824 words of memory out of 5000000
+ 1440825 words of memory out of 5000000
  53615 multiletter control sequences out of 15000+600000
  433641 words of font info for 135 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
