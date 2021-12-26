@@ -599,7 +599,49 @@
 		\end{array}
 		\right)$ as $B$, we have 
 		$$x - \mu = B^{-1}z$$
-		$$\Leftrightarrow$$
+		$$\Leftrightarrow z^T(B^{-1})^T\Sigma B^{-1}z$$
+		
+		By computing $(B\Sigma B^T)^{-1}$,
+		\begin{align*}
+			\Rightarrow 
+			\left(
+			\begin{array}{cc}
+				I & 0\\
+				-\Sigma_{21}\Sigma_{11}^{-1} & I
+			\end{array}
+			\right)
+			\left(
+			\begin{array}{cc}
+				\Sigma_{11} & \Sigma_{12}\\
+				\Sigma_{21} & \Sigma_{22}
+			\end{array}
+			\right)
+			\left(
+			\begin{array}{cc}
+				I & -\Sigma_{21}\Sigma_{11}^{-1}\\
+				0 & I
+			\end{array}
+			\right)\\
+			\Rightarrow 
+			\left(
+			\begin{array}{cc}
+				\Sigma_{11} & \Sigma_{12}\\
+				0 & \Sigma_{22\cdot 1}
+			\end{array}
+			\right)
+			\left(
+			\begin{array}{cc}
+				I &  -\Sigma_{11}\Sigma_{12}\\
+				0 & I
+			\end{array}
+			\right)\\
+			\left(
+			\begin{array}{cc}
+				\Sigma_{11} & 0\\
+				0 & \Sigma_{22\cdot 1}
+			\end{array}
+			\right)
+		\end{align*}
 		\end{proof}
 	\end{theorem}
 
